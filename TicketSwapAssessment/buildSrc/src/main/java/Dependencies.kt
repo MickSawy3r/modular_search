@@ -67,7 +67,10 @@ object Libraries {
         const val spotifyVersion = "1.2.5"
         const val room = "2.3.0"
         const val activityKtx = "1.2.3"
+        const val moshi = "1.12.0"
     }
+
+    const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
 
     const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
     const val roomAnnotationProcessor = "androidx.room:room-compiler:${Versions.room}"

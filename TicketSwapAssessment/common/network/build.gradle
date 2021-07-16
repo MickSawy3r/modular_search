@@ -4,4 +4,7 @@ dependencies {
     implementation(Libraries.rxJava)
     implementation(Libraries.okHttp)
     implementation(Libraries.okHttpLoggingInterceptor)
+    implementation(Libraries.moshi)
+
+    testImplementation(TestLibraries.junit4)
 }
