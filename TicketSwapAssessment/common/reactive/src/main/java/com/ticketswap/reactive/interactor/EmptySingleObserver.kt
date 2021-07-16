@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.core.rx
+package com.ticketswap.interactor
 
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 

@@ -5,10 +5,9 @@ import androidx.room.Room
 
 object CacheLibrary {
     fun init(context: Context) {
-        Room.databaseBuilder(
+        Room.inMemoryDatabaseBuilder(
             context,
-            CacheDatabase::class.java,
-            "cache-db"
+            CacheDatabase::class.java
         ).build()
     }
 }

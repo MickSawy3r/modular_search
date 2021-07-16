@@ -1,9 +1,8 @@
-package com.ticketswap.assessment.core.interactor
+package com.ticketswap.interactor
 
-import com.ticketswap.assessment.core.executor.PostExecutionThread
-import com.ticketswap.assessment.core.executor.ThreadExecutor
+import com.ticketswap.executor.PostExecutionThread
+import com.ticketswap.executor.ThreadExecutor
 import io.reactivex.rxjava3.core.Scheduler
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers

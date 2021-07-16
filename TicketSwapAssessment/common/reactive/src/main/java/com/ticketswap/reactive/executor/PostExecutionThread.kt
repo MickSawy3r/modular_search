@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.core.executor
+package com.ticketswap.executor
 
 import io.reactivex.rxjava3.core.Scheduler
 

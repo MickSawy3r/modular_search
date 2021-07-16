@@ -37,6 +37,8 @@ android {
 dependencies {
     // Modules and Projects
     implementation(project(":common:cache"))
+    implementation(project(":common:reactive"))
+    implementation(project(":navigation"))
 
     // Compile time dependencies
     kapt(Libraries.lifecycleCompiler)

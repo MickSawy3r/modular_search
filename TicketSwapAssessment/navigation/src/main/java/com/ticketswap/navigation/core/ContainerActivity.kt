@@ -1,16 +1,13 @@
-package com.ticketswap.assessment.core.platform
+package com.ticketswap.navigation.core
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.ticketswap.assessment.R
-import com.ticketswap.assessment.core.extension.inTransaction
-import com.ticketswap.assessment.databinding.ActivityLayoutBinding
-import dagger.hilt.android.AndroidEntryPoint
+import com.ticketswap.navigation.R
+import com.ticketswap.navigation.databinding.ActivityLayoutBinding
+import com.ticketswap.navigation.extensions.inTransaction
 
-@AndroidEntryPoint
-abstract class BaseActivity : AppCompatActivity() {
-
+abstract class ContainerActivity : AppCompatActivity() {
     lateinit var uiBinding: ActivityLayoutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

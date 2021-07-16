@@ -1,0 +1,12 @@
+apply from: "$rootDir/common-android-library.gradle"
+
+dependencies {
+    kapt(Libraries.lifecycleCompiler)
+
+    implementation(Libraries.appCompat)
+    implementation(Libraries.activityKtx)
+    implementation(Libraries.material)
+    implementation(Libraries.constraintLayout)
+    implementation(Libraries.lifecycleExtensions)
+    implementation(Libraries.fragmentKtx)
+}

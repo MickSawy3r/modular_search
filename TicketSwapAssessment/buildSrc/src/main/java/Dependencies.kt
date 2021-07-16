@@ -66,12 +66,15 @@ object Libraries {
         const val rxAndroid = "3.0.0"
         const val spotifyVersion = "1.2.5"
         const val room = "2.3.0"
+        const val activityKtx = "1.2.3"
     }
 
     const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
     const val roomAnnotationProcessor = "androidx.room:room-compiler:${Versions.room}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
     const val roomRxAdapter = "androidx.room:room-rxjava3:${Versions.room}"
+
+    const val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtx}"
 
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Kotlin.standardLibrary}"
     const val kotlinCoroutines =

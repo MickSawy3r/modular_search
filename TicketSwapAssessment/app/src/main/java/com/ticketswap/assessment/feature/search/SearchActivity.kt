@@ -2,10 +2,10 @@ package com.ticketswap.assessment.feature.search
 
 import android.content.Context
 import android.content.Intent
-import com.ticketswap.assessment.core.platform.BaseActivity
-import com.ticketswap.assessment.core.platform.BaseFragment
+import com.ticketswap.navigation.core.BaseFragment
+import com.ticketswap.navigation.core.ContainerActivity
 
-class SearchActivity : BaseActivity() {
+class SearchActivity : ContainerActivity() {
     override fun fragment(): BaseFragment = SearchFragment()
 
     companion object {

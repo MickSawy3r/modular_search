@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.core.executor
+package com.ticketswap.executor
 
 import java.util.concurrent.Executor
 
