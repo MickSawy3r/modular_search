@@ -1,7 +1,7 @@
-package com.ticketswap.interactor
+package com.ticketswap.reactive.interactor
 
-import com.ticketswap.executor.PostExecutionThread
-import com.ticketswap.executor.ThreadExecutor
+import com.ticketswap.reactive.executor.PostExecutionThread
+import com.ticketswap.reactive.executor.ThreadExecutor
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 

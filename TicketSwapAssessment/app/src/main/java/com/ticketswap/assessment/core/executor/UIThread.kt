@@ -1,6 +1,6 @@
 package com.ticketswap.assessment.core.executor
 
-import com.ticketswap.executor.PostExecutionThread
+import com.ticketswap.reactive.executor.PostExecutionThread
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler
 import javax.inject.Inject

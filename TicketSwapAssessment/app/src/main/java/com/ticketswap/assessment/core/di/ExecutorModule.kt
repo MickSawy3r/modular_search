@@ -2,8 +2,8 @@ package com.ticketswap.assessment.core.di
 
 import com.ticketswap.assessment.core.executor.JobExecutor
 import com.ticketswap.assessment.core.executor.UIThread
-import com.ticketswap.executor.PostExecutionThread
-import com.ticketswap.executor.ThreadExecutor
+import com.ticketswap.reactive.executor.PostExecutionThread
+import com.ticketswap.reactive.executor.ThreadExecutor
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

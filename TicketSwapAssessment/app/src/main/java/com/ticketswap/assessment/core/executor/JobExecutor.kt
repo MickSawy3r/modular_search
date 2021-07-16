@@ -1,6 +1,6 @@
 package com.ticketswap.assessment.core.executor
 
-import com.ticketswap.executor.ThreadExecutor
+import com.ticketswap.reactive.executor.ThreadExecutor
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Inject
