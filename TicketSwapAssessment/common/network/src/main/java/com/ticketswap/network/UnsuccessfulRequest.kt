@@ -1,7 +1,7 @@
 package com.ticketswap.network
 
-class UnsuccessfulRequest constructor(private val error: String) : Exception() {
+open class UnsuccessfulRequest constructor(private val url: String, private val error: String?) : Exception() {
     override fun toString(): String {
-        return "Bad Response: $error"
+        return "Bad Response to URL $url: $error"
     }
 }

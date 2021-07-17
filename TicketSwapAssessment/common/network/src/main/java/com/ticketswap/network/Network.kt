@@ -7,6 +7,10 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 
+/**
+ * An extension for the Request object to perform a network call
+ * @throws UnsuccessfulRequest
+ */
 fun <T> Request.enqueue(
     interceptors: List<Interceptor> = listOf(),
     responseAdapter: JsonAdapter<T>,
@@ -18,7 +22,16 @@ fun <T> Request.enqueue(
         okHttp.newCall(request = this).execute()
     }.map {
         if (!it.isSuccessful) {
-            throw UnsuccessfulRequest(it.body?.string() ?: it.request.url.toString())
+            if (it.code == 400) {
+                throw BadRequestException(it.request.url.toString(), it.request.body.toString())
+            }
+            if (it.code == 403) {
+                throw UnauthorizedException(it.request.url.toString())
+            }
+            if (it.code >= 500) {
+                throw ServerException(it.request.url.toString())
+            }
+            throw UnsuccessfulRequest(it.request.url.toString(), it.body?.string())
         }
         if (it.body?.source() == null) {
             return@map null
