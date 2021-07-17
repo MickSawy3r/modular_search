@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ticketswap.assessment">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -28,7 +28,11 @@
 
         <activity android:name=".feature.auth.LoginActivity" />
 
-        <activity android:name=".feature.search.presentation.SearchActivity"/>
+        <activity android:name=".feature.search.presentation.SearchActivity" />
+
+        <activity
+            android:name="com.spotify.sdk.android.auth.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
 </manifest>
