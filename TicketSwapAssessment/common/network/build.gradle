@@ -6,5 +6,6 @@ dependencies {
     implementation(Libraries.okHttpLoggingInterceptor)
     implementation(Libraries.moshi)
 
+    testImplementation(TestLibraries.okHttpMockWebServer)
     testImplementation(TestLibraries.junit4)
 }

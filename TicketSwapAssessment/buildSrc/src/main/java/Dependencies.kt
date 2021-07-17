@@ -131,6 +131,7 @@ object TestLibraries {
         const val testRules = "1.1.0"
         const val coroutinesTest = "1.5.0"
         const val hiltTesting = BuildPlugins.Versions.hilt
+        const val okHttp = "4.9.0"
     }
 
     const val coroutinesTest =
@@ -150,6 +151,7 @@ object TestLibraries {
     const val mockitoJUnitJupyter = "org.mockito:mockito-junit-jupiter:${Versions.mockito}"
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockito}"
     const val mockitoCore = "org.mockito:mockito-core:${Versions.mockito}"
+    const val okHttpMockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okHttp}"
 }
 
 object TestRuntimeLibraries {

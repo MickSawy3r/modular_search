@@ -1,9 +1,9 @@
-package com.ticketswap.assessment.core.platform
+package com.ticketswap.platform.core
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ticketswap.assessment.core.exception.Failure
+import com.ticketswap.platform.exception.Failure
 
 /**
  * Base ViewModel class with default Failure handling.

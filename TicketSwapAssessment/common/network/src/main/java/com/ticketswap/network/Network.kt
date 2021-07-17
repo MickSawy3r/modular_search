@@ -17,6 +17,9 @@ fun <T> Request.enqueue(
     return Single.fromCallable {
         okHttp.newCall(request = this).execute()
     }.map {
+        if (!it.isSuccessful) {
+            throw UnsuccessfulRequest(it.body?.string() ?: it.request.url.toString())
+        }
         if (it.body?.source() == null) {
             return@map null
         }

@@ -47,6 +47,8 @@ class SearchFragment : BaseFragment() {
         setupUI()
         setupListeners()
 
+        searchViewModel.start()
+
         return uiBinding.root
     }
 

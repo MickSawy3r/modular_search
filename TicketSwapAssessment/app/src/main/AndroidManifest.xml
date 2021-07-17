@@ -26,7 +26,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".feature.auth.LoginActivity" />
+        <activity android:name=".feature.auth.presenter.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/com_spotify_sdk_redirect_scheme"
+                    android:host="@string/com_spotify_sdk_redirect_host" />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".feature.search.presentation.SearchActivity" />
 

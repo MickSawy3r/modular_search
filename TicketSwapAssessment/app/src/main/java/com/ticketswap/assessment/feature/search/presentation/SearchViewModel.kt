@@ -3,9 +3,10 @@ package com.ticketswap.assessment.feature.search.presentation
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ticketswap.assessment.core.exception.Failure
-import com.ticketswap.assessment.core.platform.BaseViewModel
+import com.ticketswap.platform.exception.Failure
+import com.ticketswap.platform.core.BaseViewModel
 import com.ticketswap.assessment.feature.search.domain.datamodel.SearchListItemDataModel
+import com.ticketswap.assessment.feature.search.domain.usecase.GetLastSearchUseCase
 import com.ticketswap.assessment.feature.search.domain.usecase.SearchSpotifyUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.observers.DisposableObserver
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val searchSpotifyUseCase: SearchSpotifyUseCase
+    private val searchSpotifyUseCase: SearchSpotifyUseCase,
+    private val getLastSearchUseCase: GetLastSearchUseCase
 ) : BaseViewModel() {
 
     private val _searchLiveData: MutableLiveData<List<SearchListItemDataModel>> = MutableLiveData()
@@ -21,6 +23,10 @@ class SearchViewModel @Inject constructor(
 
     private val _loadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
     val loadingLiveData: LiveData<Boolean> = _loadingLiveData
+
+    fun start() {
+        getLastSearchUseCase.execute(observer = SearchObserver())
+    }
 
     fun search(query: String) {
         _loadingLiveData.postValue(true)

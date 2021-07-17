@@ -1,6 +1,6 @@
-package com.ticketswap.assessment.core.exception
+package com.ticketswap.platform.exception
 
-sealed class Failure {
+sealed class Failure : Exception() {
     object NetworkConnection : Failure()
     object ServerError : Failure()
 

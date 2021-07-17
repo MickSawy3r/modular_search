@@ -32,5 +32,13 @@ abstract class ContainerActivity : AppCompatActivity() {
             )
         }
 
+    private fun replaceFragment(savedInstanceState: Bundle?, fragment: BaseFragment) =
+        savedInstanceState ?: supportFragmentManager.inTransaction {
+            replace(
+                uiBinding.fragmentContainer.id,
+                fragment
+            )
+        }
+
     abstract fun fragment(): BaseFragment
 }

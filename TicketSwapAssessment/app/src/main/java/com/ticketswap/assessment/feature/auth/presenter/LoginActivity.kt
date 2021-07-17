@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.feature.auth
+package com.ticketswap.assessment.feature.auth.presenter
 
 import android.content.Context
 import android.content.Intent

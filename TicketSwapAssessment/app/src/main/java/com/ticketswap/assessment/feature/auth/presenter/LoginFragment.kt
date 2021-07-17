@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.feature.auth
+package com.ticketswap.assessment.feature.auth.presenter
 
 import android.net.Uri
 import android.os.Bundle
@@ -90,7 +90,7 @@ class LoginFragment : BaseFragment() {
                     Log.d(TAG, "Error: Empty Response")
                 }
                 else -> {
-                    authGuard.setLoggedIn(response.accessToken)
+                    authGuard.setLoggedIn(response.accessToken, response.expiresIn)
                     startActivity(SearchActivity.callingIntent(requireContext()))
                 }
             }
