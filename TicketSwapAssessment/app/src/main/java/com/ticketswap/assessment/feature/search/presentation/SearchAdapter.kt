@@ -1,11 +1,11 @@
-package com.ticketswap.assessment.feature.search.adapter
+package com.ticketswap.assessment.feature.search.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.ItemSearchBinding
-import com.ticketswap.assessment.feature.search.datamodel.SearchListItemDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.SearchListItemDataModel
 import javax.inject.Inject
 import kotlin.properties.Delegates
 

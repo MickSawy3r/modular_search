@@ -6,7 +6,9 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.ticketswap.navigation.extensions.viewContainer
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 abstract class BaseFragment : Fragment() {
     open fun onBackPressed() {}
 

@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.feature.search
+package com.ticketswap.assessment.feature.search.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.ticketswap.assessment.R
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.FragmentSearchBinding
-import com.ticketswap.assessment.feature.search.adapter.SearchAdapter
 import com.ticketswap.navigation.core.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

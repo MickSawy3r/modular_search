@@ -1,7 +1,9 @@
 apply from: "$rootDir/common-android-library.gradle"
+apply plugin: BuildPlugins.androidHilt
 
 dependencies {
     kapt(Libraries.lifecycleCompiler)
+    kapt(Libraries.hiltCompiler)
 
     implementation(Libraries.appCompat)
     implementation(Libraries.activityKtx)
@@ -9,4 +11,5 @@ dependencies {
     implementation(Libraries.constraintLayout)
     implementation(Libraries.lifecycleExtensions)
     implementation(Libraries.fragmentKtx)
+    implementation(Libraries.hilt)
 }

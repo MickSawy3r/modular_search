@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.feature.search
+package com.ticketswap.assessment.feature.search.presentation
 
 import android.content.Context
 import android.content.Intent

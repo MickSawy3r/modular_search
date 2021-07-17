@@ -2,7 +2,7 @@ package com.ticketswap.assessment.core.navigation
 
 import android.content.Context
 import android.view.View
-import com.ticketswap.assessment.feature.search.SearchActivity
+import com.ticketswap.assessment.feature.search.presentation.SearchActivity
 import com.ticketswap.assessment.feature.auth.Authenticator
 import com.ticketswap.assessment.feature.auth.LoginActivity
 import javax.inject.Inject

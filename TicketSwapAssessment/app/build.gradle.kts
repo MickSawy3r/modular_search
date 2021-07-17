@@ -38,13 +38,19 @@ dependencies {
     // Modules and Projects
     implementation(project(":common:cache"))
     implementation(project(":common:reactive"))
+    implementation(project(":common:network"))
     implementation(project(":navigation"))
+
+    annotationProcessor(Libraries.roomAnnotationProcessor)
 
     // Compile time dependencies
     kapt(Libraries.lifecycleCompiler)
     kapt(Libraries.hiltCompiler)
+    kapt(Libraries.roomCompiler)
 
     // Application dependencies
+    implementation(Libraries.roomRuntime)
+    implementation(Libraries.roomRxAdapter)
     implementation(Libraries.kotlinStdLib)
     implementation(Libraries.kotlinCoroutines)
     implementation(Libraries.kotlinCoroutinesAndroid)
@@ -61,12 +67,13 @@ dependencies {
     implementation(Libraries.glide)
     implementation(Libraries.hilt)
     implementation(Libraries.spotify)
-    implementation(Libraries.retrofit)
     implementation(Libraries.moshiAdapter)
+    implementation(Libraries.okHttp)
     implementation(Libraries.okHttpLoggingInterceptor)
     implementation(Libraries.rxAndroid)
-    implementation(Libraries.rxRetrofitAdapter)
     implementation(Libraries.rxJava)
+
+    // Ktx
     implementation(Libraries.fragmentKtx)
 
     // Unit/Android tests dependencies

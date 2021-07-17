@@ -28,7 +28,7 @@
 
         <activity android:name=".feature.auth.LoginActivity" />
 
-        <activity android:name=".feature.search.SearchActivity"/>
+        <activity android:name=".feature.search.presentation.SearchActivity"/>
     </application>
 
 </manifest>
