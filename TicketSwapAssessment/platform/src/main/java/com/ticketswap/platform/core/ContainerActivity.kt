@@ -1,11 +1,11 @@
-package com.ticketswap.navigation.core
+package com.ticketswap.platform.core
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.ticketswap.navigation.R
-import com.ticketswap.navigation.databinding.ActivityLayoutBinding
-import com.ticketswap.navigation.extensions.inTransaction
+import com.ticketswap.platform.R
+import com.ticketswap.platform.databinding.ActivityLayoutBinding
+import com.ticketswap.platform.extensions.inTransaction
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

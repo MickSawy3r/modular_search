@@ -3,6 +3,6 @@ include(
     ":common:cache",
     ":common:network",
     ":common:reactive",
-    ":navigation",
+    ":platform",
     ":authenticator"
 )

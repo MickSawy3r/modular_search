@@ -17,7 +17,7 @@ import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.FragmentLoginBinding
 import com.ticketswap.assessment.feature.search.presentation.SearchActivity
 import com.ticketswap.authenticator.AuthGuard
-import com.ticketswap.navigation.core.BaseFragment
+import com.ticketswap.platform.core.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

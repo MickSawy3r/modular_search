@@ -1,11 +1,11 @@
-package com.ticketswap.navigation.extensions
+package com.ticketswap.platform.extensions
 
 import android.content.Context
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.ticketswap.navigation.core.BaseFragment
-import com.ticketswap.navigation.core.ContainerActivity
+import com.ticketswap.platform.core.BaseFragment
+import com.ticketswap.platform.core.ContainerActivity
 
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) =
     beginTransaction().func().commit()
