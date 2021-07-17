@@ -40,6 +40,7 @@ dependencies {
     implementation(project(":common:reactive"))
     implementation(project(":common:network"))
     implementation(project(":navigation"))
+    implementation(project(":authenticator"))
 
     annotationProcessor(Libraries.roomAnnotationProcessor)
 

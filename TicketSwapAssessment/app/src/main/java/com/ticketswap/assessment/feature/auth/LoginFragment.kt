@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.feature.auth.fragment
+package com.ticketswap.assessment.feature.auth
 
 import android.net.Uri
 import android.os.Bundle
@@ -12,11 +12,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
-import com.ticketswap.assessment.core.platform.PrefStore
 import com.ticketswap.assessment.R
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.FragmentLoginBinding
 import com.ticketswap.assessment.feature.search.presentation.SearchActivity
+import com.ticketswap.authenticator.AuthGuard
 import com.ticketswap.navigation.core.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -30,7 +30,7 @@ class LoginFragment : BaseFragment() {
     lateinit var navigator: Navigator
 
     @Inject
-    lateinit var prefs: PrefStore
+    lateinit var authGuard: AuthGuard
 
     private lateinit var uiBinding: FragmentLoginBinding
 
@@ -90,7 +90,7 @@ class LoginFragment : BaseFragment() {
                     Log.d(TAG, "Error: Empty Response")
                 }
                 else -> {
-                    prefs.setAuthToken(response.accessToken)
+                    authGuard.setLoggedIn(response.accessToken)
                     startActivity(SearchActivity.callingIntent(requireContext()))
                 }
             }

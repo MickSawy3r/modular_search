@@ -15,10 +15,9 @@ class SearchLocalModule {
     @Provides
     fun provideCacheDatabase(@ApplicationContext context: Context): CacheDatabase {
         return Room
-            .databaseBuilder(
+            .inMemoryDatabaseBuilder(
                 context,
-                CacheDatabase::class.java,
-                "cache-database.db"
+                CacheDatabase::class.java
             )
             .build()
     }

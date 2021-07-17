@@ -2,7 +2,6 @@ package com.ticketswap.assessment.feature.auth
 
 import android.content.Context
 import android.content.Intent
-import com.ticketswap.assessment.feature.auth.fragment.LoginFragment
 import com.ticketswap.navigation.core.BaseFragment
 import com.ticketswap.navigation.core.ContainerActivity
 

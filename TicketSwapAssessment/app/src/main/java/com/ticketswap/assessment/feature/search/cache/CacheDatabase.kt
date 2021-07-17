@@ -7,7 +7,8 @@ import com.ticketswap.assessment.feature.search.cache.converter.CacheConverters
 
 @Database(
     entities = [CacheEntry::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(CacheConverters::class)
 abstract class CacheDatabase : RoomDatabase() {

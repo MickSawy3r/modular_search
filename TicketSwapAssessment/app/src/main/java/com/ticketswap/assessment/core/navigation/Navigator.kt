@@ -3,14 +3,14 @@ package com.ticketswap.assessment.core.navigation
 import android.content.Context
 import android.view.View
 import com.ticketswap.assessment.feature.search.presentation.SearchActivity
-import com.ticketswap.assessment.feature.auth.Authenticator
 import com.ticketswap.assessment.feature.auth.LoginActivity
+import com.ticketswap.authenticator.AuthGuard
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class Navigator @Inject constructor(
-    private val authenticator: Authenticator
+    private val authenticator: AuthGuard
 ) {
 
     private fun showLogin(context: Context) =

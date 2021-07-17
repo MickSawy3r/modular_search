@@ -1,13 +1,9 @@
-package com.ticketswap.assessment.core.platform
+package com.ticketswap.authenticator
 
 import android.content.Context
 import android.content.SharedPreferences
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class PrefStore @Inject constructor(@ApplicationContext context: Context) {
+internal class PrefStore constructor(context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("shared preferences", 0)
 
     fun setAuthToken(authToken: String) {
