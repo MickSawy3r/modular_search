@@ -2,22 +2,20 @@ package com.ticketswap.assessment.feature.search.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.ItemSearchBinding
-import com.ticketswap.assessment.feature.search.domain.datamodel.SearchListItemDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
 class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.SearchVH>() {
 
-    internal var collection: List<SearchListItemDataModel> by Delegates.observable(emptyList()) { _, _, _ ->
+    internal var collection: List<SpotifyDataModel> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
     }
 
-    internal var clickListener: (SearchListItemDataModel, Navigator.Extras) -> Unit = { _, _ -> }
+    internal var clickListener: (SpotifyDataModel, Navigator.Extras) -> Unit = { _, _ -> }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): SearchVH {
         val layoutInflater = LayoutInflater.from(p0.context)
@@ -34,8 +32,8 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.S
     class SearchVH(private val itemRow: ItemSearchBinding) :
         RecyclerView.ViewHolder(itemRow.root) {
         fun bind(
-            searchItem: SearchListItemDataModel,
-            clickListener: (SearchListItemDataModel, Navigator.Extras) -> Unit
+            searchItem: SpotifyDataModel,
+            clickListener: (SpotifyDataModel, Navigator.Extras) -> Unit
         ) {
             itemRow.name.text = searchItem.name
             itemView.setOnClickListener {

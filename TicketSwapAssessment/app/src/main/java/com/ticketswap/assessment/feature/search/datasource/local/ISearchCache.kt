@@ -3,13 +3,14 @@ package com.ticketswap.assessment.feature.search.datasource.local
 import com.ticketswap.assessment.feature.search.cache.CacheEntry
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 
 interface ISearchCache {
-    fun saveCache(response: CacheEntry): Completable
+    fun saveCache(cacheEntry: CacheEntry): Completable
 
-    fun saveCacheList(response: List<CacheEntry>): Completable
+    fun saveCacheList(cacheEntry: List<CacheEntry>): Completable
 
-    fun getLastCachedRequest(): Observable<CacheEntry>
+    fun getCachedRequests(): Single<List<CacheEntry>>
 
-    fun getCachedRequests(): Observable<List<CacheEntry>>
+    fun getLastCachedRequest(): Single<CacheEntry>
 }

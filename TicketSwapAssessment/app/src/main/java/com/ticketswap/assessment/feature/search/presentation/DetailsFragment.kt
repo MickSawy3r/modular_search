@@ -11,8 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ticketswap.assessment.R
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.FragmentDetailsBinding
-import com.ticketswap.assessment.feature.search.domain.datamodel.ItemDetailsDataModel
-import com.ticketswap.assessment.feature.search.domain.datamodel.SearchListItemDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 import com.ticketswap.extention.exception.Failure
 import com.ticketswap.platform.core.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +24,7 @@ class DetailsFragment : BaseFragment() {
         private const val PARAM_SEARCH_ITEM = "SEARCH_ITEM"
         private const val TAG = "DetailsFragment"
 
-        fun forItem(item: SearchListItemDataModel) = DetailsFragment().apply {
+        fun forItem(item: SpotifyDataModel) = DetailsFragment().apply {
             arguments = bundleOf(PARAM_SEARCH_ITEM to item)
         }
     }
@@ -69,8 +68,8 @@ class DetailsFragment : BaseFragment() {
     private fun setupUI() {
         uiBinding.rvImages.adapter = detailsAdapter
 
-        val item = arguments?.get(PARAM_SEARCH_ITEM) as SearchListItemDataModel
-        detailsViewMode.loadDetails(item.id, item.searchItemType)
+        val item = arguments?.get(PARAM_SEARCH_ITEM) as SpotifyDataModel
+        detailsViewMode.loadDetails(item.id, item.type)
     }
 
     private fun setupListeners() {
@@ -84,7 +83,7 @@ class DetailsFragment : BaseFragment() {
         })
     }
 
-    private fun renderDetails(item: ItemDetailsDataModel) {
+    private fun renderDetails(item: SpotifyDataModel) {
         Log.d(TAG, "renderDetails: ")
         detailsAdapter.collection = item.images
         uiBinding.tvTitle.text = item.name

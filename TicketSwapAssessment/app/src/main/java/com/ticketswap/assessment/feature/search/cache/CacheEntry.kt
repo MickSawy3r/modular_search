@@ -4,20 +4,24 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.ticketswap.assessment.feature.search.domain.datamodel.SearchItemType
-import com.ticketswap.assessment.feature.search.domain.datamodel.SearchListItemDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 import java.util.Date
 import java.util.Calendar
 
 @Entity(tableName = "cache")
 data class CacheEntry(
-    @PrimaryKey val id: Date = Calendar.getInstance().time,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "type") val type: SearchItemType,
-    @ColumnInfo(name = "itemId") val itemId: String
+    @ColumnInfo(name = "itemId") val itemId: String,
+    @ColumnInfo(name = "date") val createdAt: Date = Calendar.getInstance().time
 )
 
-internal fun CacheEntry.toDomainModel() = SearchListItemDataModel(
+internal fun CacheEntry.toDomainModel() = SpotifyDataModel(
     name = this.name,
-    searchItemType = this.type,
-    id = this.itemId
+    type = this.type,
+    id = this.itemId,
+    images = listOf()
 )
+
+internal fun List<CacheEntry>.toDomainModel() = this.map { it.toDomainModel() }

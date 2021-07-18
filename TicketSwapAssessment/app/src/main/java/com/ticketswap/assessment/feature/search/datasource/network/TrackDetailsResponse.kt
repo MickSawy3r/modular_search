@@ -1,5 +1,6 @@
-package com.ticketswap.assessment.feature.search.datasource.network
+@file:Suppress("ParameterListWrapping", "LongParameterList", "ConstructorParameterNaming")
 
+package com.ticketswap.assessment.feature.search.datasource.network
 
 import com.squareup.moshi.Json
 

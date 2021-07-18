@@ -2,7 +2,6 @@
 
 package com.ticketswap.assessment.feature.search.datasource.network
 
-
 import com.squareup.moshi.Json
 
 data class SearchResponse(
@@ -13,7 +12,7 @@ data class SearchResponse(
         val href: String = "",
         val items: List<Item> = listOf(),
         val limit: Int = 0,
-        val next: String = "",
+        val next: String? = "",
         val offset: Int = 0,
         val previous: Any? = Any(),
         val total: Int = 0
@@ -52,7 +51,7 @@ data class SearchResponse(
         val href: String = "",
         val items: List<Item> = listOf(),
         val limit: Int = 0,
-        val next: String = "",
+        val next: String? = "",
         val offset: Int = 0,
         val previous: Any? = Any(),
         val total: Int = 0

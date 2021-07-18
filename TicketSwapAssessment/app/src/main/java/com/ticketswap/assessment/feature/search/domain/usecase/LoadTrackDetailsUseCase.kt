@@ -1,7 +1,7 @@
 package com.ticketswap.assessment.feature.search.domain.usecase
 
 import com.ticketswap.assessment.feature.search.data.SpotifyRepository
-import com.ticketswap.assessment.feature.search.domain.datamodel.ItemDetailsDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 import com.ticketswap.assessment.feature.search.domain.failures.NullQueryFailure
 import com.ticketswap.assessment.feature.search.domain.failures.SessionExpiredFailure
 import com.ticketswap.authenticator.AuthGuard
@@ -16,9 +16,9 @@ class LoadTrackDetailsUseCase @Inject constructor(
     postExecutionThread: PostExecutionThread,
     private val spotifyRepository: SpotifyRepository,
     private val authGuard: AuthGuard
-) : SingleUseCase<ItemDetailsDataModel, String>(threadExecutor, postExecutionThread) {
+) : SingleUseCase<SpotifyDataModel, String>(threadExecutor, postExecutionThread) {
 
-    override fun buildUseCaseSingle(params: String?): Single<ItemDetailsDataModel> {
+    override fun buildUseCaseSingle(params: String?): Single<SpotifyDataModel> {
         if (params == null) {
             return Single.error(NullQueryFailure())
         }

@@ -3,8 +3,8 @@ package com.ticketswap.assessment.feature.search.presentation
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ticketswap.assessment.feature.search.domain.datamodel.ItemDetailsDataModel
 import com.ticketswap.assessment.feature.search.domain.datamodel.SearchItemType
+import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 import com.ticketswap.assessment.feature.search.domain.failures.NullQueryFailure
 import com.ticketswap.assessment.feature.search.domain.usecase.LoadArtistDetailsUseCase
 import com.ticketswap.assessment.feature.search.domain.usecase.LoadTrackDetailsUseCase
@@ -21,8 +21,8 @@ class DetailsViewModel @Inject constructor(
     private val loadTrackDetailsUseCase: LoadTrackDetailsUseCase
 ) : BaseViewModel() {
 
-    private val _detailsLiveDate = MutableLiveData<ItemDetailsDataModel>()
-    val detailsLiveData: LiveData<ItemDetailsDataModel> = _detailsLiveDate
+    private val _detailsLiveDate = MutableLiveData<SpotifyDataModel>()
+    val detailsLiveData: LiveData<SpotifyDataModel> = _detailsLiveDate
 
     fun loadDetails(id: String, type: SearchItemType) {
         Log.d(TAG, "loadDetails: $id")
@@ -33,8 +33,8 @@ class DetailsViewModel @Inject constructor(
         }
     }
 
-    private inner class DetailsObserver : DisposableSingleObserver<ItemDetailsDataModel>() {
-        override fun onSuccess(t: ItemDetailsDataModel) {
+    private inner class DetailsObserver : DisposableSingleObserver<SpotifyDataModel>() {
+        override fun onSuccess(t: SpotifyDataModel) {
             setLoading(false)
             _detailsLiveDate.postValue(t)
         }

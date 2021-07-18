@@ -3,13 +3,15 @@ package com.ticketswap.assessment.feature.search.presentation
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ticketswap.extention.exception.Failure
-import com.ticketswap.platform.core.BaseViewModel
-import com.ticketswap.assessment.feature.search.domain.datamodel.SearchListItemDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
+import com.ticketswap.assessment.feature.search.domain.failures.SessionExpiredFailure
 import com.ticketswap.assessment.feature.search.domain.usecase.GetLastSearchUseCase
 import com.ticketswap.assessment.feature.search.domain.usecase.SearchSpotifyUseCase
+import com.ticketswap.extention.exception.Failure
+import com.ticketswap.network.UnauthorizedException
+import com.ticketswap.platform.core.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.observers.DisposableObserver
+import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,11 +20,14 @@ class SearchViewModel @Inject constructor(
     private val getLastSearchUseCase: GetLastSearchUseCase
 ) : BaseViewModel() {
 
-    private val _searchLiveData: MutableLiveData<List<SearchListItemDataModel>> = MutableLiveData()
-    val searchLiveData: LiveData<List<SearchListItemDataModel>> = _searchLiveData
+    private val _searchLiveData: MutableLiveData<List<SpotifyDataModel>> = MutableLiveData()
+    val searchLiveData: LiveData<List<SpotifyDataModel>> = _searchLiveData
 
     fun start() {
-        getLastSearchUseCase.execute(observer = SearchObserver())
+        setLoading(true)
+        getLastSearchUseCase.execute(
+            observer = SearchObserver()
+        )
     }
 
     fun search(query: String) {
@@ -33,21 +38,19 @@ class SearchViewModel @Inject constructor(
         )
     }
 
-    private inner class SearchObserver : DisposableObserver<List<SearchListItemDataModel>>() {
+    private inner class SearchObserver : DisposableSingleObserver<List<SpotifyDataModel>>() {
 
         override fun onError(e: Throwable) {
             Log.d(TAG, "onError: $e")
-            setLoading(false)
+            if (e is UnauthorizedException) {
+                handleFailure(SessionExpiredFailure())
+            }
             handleFailure(Failure.NetworkConnection)
         }
 
-        override fun onNext(t: List<SearchListItemDataModel>?) {
-            setLoading(false)
+        override fun onSuccess(t: List<SpotifyDataModel>?) {
             _searchLiveData.postValue(t)
-        }
-
-        override fun onComplete() {
-            Log.d(TAG, "onComplete: ")
+            setLoading(false)
         }
     }
 

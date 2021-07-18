@@ -2,13 +2,11 @@ package com.ticketswap.assessment.core.navigation
 
 import android.content.Context
 import android.view.View
-import android.widget.ImageView
-import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
-import com.ticketswap.assessment.feature.search.presentation.SearchActivity
 import com.ticketswap.assessment.feature.auth.presenter.LoginActivity
-import com.ticketswap.assessment.feature.search.domain.datamodel.SearchListItemDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 import com.ticketswap.assessment.feature.search.presentation.DetailsActivity
+import com.ticketswap.assessment.feature.search.presentation.SearchActivity
 import com.ticketswap.authenticator.AuthGuard
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -32,7 +30,7 @@ class Navigator @Inject constructor(
 
     fun showSearchItemDetails(
         activity: FragmentActivity,
-        searchItem: SearchListItemDataModel,
+        searchItem: SpotifyDataModel,
         navigationExtras: Extras
     ) {
         val intent = DetailsActivity.callingIntent(activity, searchItem)

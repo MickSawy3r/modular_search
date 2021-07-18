@@ -25,6 +25,12 @@ android {
         testInstrumentationRunner = AndroidClient.testRunner
 
         buildConfigField("String", "SPOTIFY_BASE_URL", "\"https://api.spotify.com/v1/\"")
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                argument("room.schemaLocation", "$projectDir/schemas")
+            }
+        }
     }
 
     sourceSets {

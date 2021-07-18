@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.ItemDetailsBinding
-import com.ticketswap.assessment.feature.search.domain.datamodel.SearchListItemDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 import com.ticketswap.extention.loadFromUrl
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -16,7 +16,7 @@ class DetailsAdapter@Inject constructor() : RecyclerView.Adapter<DetailsAdapter.
         notifyDataSetChanged()
     }
 
-    internal var clickListener: (SearchListItemDataModel, Navigator.Extras) -> Unit = { _, _ -> }
+    internal var clickListener: (SpotifyDataModel, Navigator.Extras) -> Unit = { _, _ -> }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): DetailsVH {
         val layoutInflater = LayoutInflater.from(p0.context)

@@ -1,27 +1,28 @@
 package com.ticketswap.assessment.feature.search.datasource.network
 
-import com.ticketswap.assessment.feature.search.domain.datamodel.ItemDetailsDataModel
 import com.ticketswap.assessment.feature.search.domain.datamodel.SearchItemType
-import com.ticketswap.assessment.feature.search.domain.datamodel.SearchListItemDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 
-internal fun SearchResponse.toDomainModel(): List<SearchListItemDataModel> {
-    val searchResult = mutableListOf<SearchListItemDataModel>()
+internal fun SearchResponse.toDomainModel(): List<SpotifyDataModel> {
+    val searchResult = mutableListOf<SpotifyDataModel>()
 
     this.artists.items.forEach {
         searchResult.add(
-            SearchListItemDataModel(
+            SpotifyDataModel(
                 id = it.id,
                 name = it.name,
-                searchItemType = SearchItemType.ARTIST
+                type = SearchItemType.ARTIST,
+                images = it.images.map { image -> image.url }
             )
         )
     }
     this.tracks.items.forEach {
         searchResult.add(
-            SearchListItemDataModel(
+            SpotifyDataModel(
                 id = it.id,
                 name = it.name,
-                searchItemType = SearchItemType.TRACK
+                type = SearchItemType.TRACK,
+                images = it.album.images.map { image -> image.url }
             )
         )
     }
@@ -29,16 +30,20 @@ internal fun SearchResponse.toDomainModel(): List<SearchListItemDataModel> {
     return searchResult
 }
 
-internal fun ArtistDetailsResponse.toDomainModel(): ItemDetailsDataModel {
-    return ItemDetailsDataModel(
+internal fun ArtistDetailsResponse.toDomainModel(): SpotifyDataModel {
+    return SpotifyDataModel(
         name = this.name,
-        images = this.images.map { it.url }
+        images = this.images.map { it.url },
+        id = this.id,
+        type = SearchItemType.ARTIST
     )
 }
 
-internal fun TrackDetailsResponse.toDomainModel(): ItemDetailsDataModel {
-    return ItemDetailsDataModel(
+internal fun TrackDetailsResponse.toDomainModel(): SpotifyDataModel {
+    return SpotifyDataModel(
         name = this.name,
-        images = this.album.images.map { it.url }
+        images = this.album.images.map { it.url },
+        id = this.id,
+        type = SearchItemType.TRACK
     )
 }

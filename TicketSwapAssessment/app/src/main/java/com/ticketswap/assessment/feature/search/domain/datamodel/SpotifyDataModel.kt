@@ -4,8 +4,9 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class SearchListItemDataModel(
-    val id: String,
+data class SpotifyDataModel(
     val name: String,
-    val searchItemType: SearchItemType
+    val images: List<String>,
+    val type: SearchItemType,
+    val id: String
 ) : Parcelable
