@@ -39,7 +39,8 @@ dependencies {
     implementation(project(":common:cache"))
     implementation(project(":common:reactive"))
     implementation(project(":common:network"))
-    implementation(project(":platform"))
+    implementation(project(":common:extension"))
+    implementation(project(":common:platform"))
     implementation(project(":authenticator"))
 
     annotationProcessor(Libraries.roomAnnotationProcessor)

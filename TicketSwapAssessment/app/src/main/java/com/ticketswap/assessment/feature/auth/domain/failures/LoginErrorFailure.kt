@@ -2,8 +2,8 @@ package com.ticketswap.assessment.feature.auth.domain.failures
 
 import com.ticketswap.platform.exception.Failure
 
-class LoginErrorFailure constructor(val reason: String) : Failure.FeatureFailure() {
+class LoginErrorFailure constructor(val reason: String?) : Failure.FeatureFailure() {
     override fun toString(): String {
-        return "Error Logging In: $reason"
+        return "Error Logging In: ${reason ?: ""}"
     }
 }

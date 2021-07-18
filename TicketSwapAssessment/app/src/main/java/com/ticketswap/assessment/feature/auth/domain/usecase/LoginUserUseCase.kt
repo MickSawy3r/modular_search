@@ -12,7 +12,7 @@ import javax.inject.Inject
 class LoginUserUseCase @Inject constructor(
     threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread,
-    val authenticator: AuthGuard
+    private val authenticator: AuthGuard
 ) : SingleUseCase<Boolean, AuthorizationResponse>(threadExecutor, postExecutionThread) {
     override fun buildUseCaseSingle(params: AuthorizationResponse?): Single<Boolean> {
         if (params == null) {

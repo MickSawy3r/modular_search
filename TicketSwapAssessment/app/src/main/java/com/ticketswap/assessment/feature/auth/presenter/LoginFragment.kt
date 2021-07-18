@@ -2,20 +2,18 @@ package com.ticketswap.assessment.feature.auth.presenter
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
-import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.viewModels
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
 import com.ticketswap.assessment.R
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.FragmentLoginBinding
-import com.ticketswap.assessment.feature.search.presentation.SearchActivity
 import com.ticketswap.authenticator.AuthGuard
 import com.ticketswap.platform.core.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +23,8 @@ private const val TAG = "LoginFragment"
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment() {
+
+    val loginViewModel: LoginViewModel by viewModels()
 
     @Inject
     lateinit var navigator: Navigator
@@ -76,23 +76,6 @@ class LoginFragment : BaseFragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             val response = AuthorizationClient.getResponse(it.resultCode, it.data)
 
-            when (response.type) {
-                AuthorizationResponse.Type.ERROR -> {
-                    Log.d(TAG, "Error: ${response.error}")
-                    Snackbar.make(
-                        uiBinding.root,
-                        "Error: ${response.error}",
-                        Snackbar.LENGTH_LONG
-                    )
-                        .show()
-                }
-                AuthorizationResponse.Type.EMPTY -> {
-                    Log.d(TAG, "Error: Empty Response")
-                }
-                else -> {
-                    authGuard.setLoggedIn(response.accessToken, response.expiresIn)
-                    startActivity(SearchActivity.callingIntent(requireContext()))
-                }
-            }
+            loginViewModel.loginUser(response)
         }
 }
