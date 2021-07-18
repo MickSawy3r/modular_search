@@ -69,6 +69,7 @@ object Libraries {
         const val room = "2.3.0"
         const val activityKtx = "1.2.3"
         const val moshi = "1.12.0"
+        const val picasso = "2.71828"
     }
 
     const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
@@ -98,7 +99,11 @@ object Libraries {
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     const val material = "com.google.android.material:material:${Versions.material}"
     const val androidAnnotations = "androidx.annotation:annotation:${Versions.annotations}"
+
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+
+    const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
 
     const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"

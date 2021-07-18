@@ -7,7 +7,15 @@ import com.ticketswap.platform.core.BaseFragment
 import com.ticketswap.platform.core.ContainerActivity
 
 class DetailsActivity : ContainerActivity() {
-    override fun fragment(): BaseFragment = DetailsFragment()
+    override fun fragment(): BaseFragment {
+        val item: SearchListItemDataModel? = intent.getParcelableExtra(INTENT_EXTRA_PARAM_MOVIE)
+        return if (item != null) {
+            DetailsFragment.forItem(item)
+        } else {
+            // TODO Change this to Error Fragment
+            DetailsFragment()
+        }
+    }
 
     companion object {
         private const val INTENT_EXTRA_PARAM_MOVIE = "INTENT_PARAM_DETAILS"

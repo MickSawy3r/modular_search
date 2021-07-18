@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.core.Single
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 
 /**
@@ -22,21 +23,23 @@ fun <T> Request.enqueue(
         okHttp.newCall(request = this).execute()
     }.map {
         if (!it.isSuccessful) {
+            if (it.code == 403 || it.code == 401) {
+                throw UnauthorizedException(it.request.url.toString())
+            }
             if (it.code == 400) {
                 throw BadRequestException(it.request.url.toString(), it.request.body.toString())
-            }
-            if (it.code == 403) {
-                throw UnauthorizedException(it.request.url.toString())
             }
             if (it.code >= 500) {
                 throw ServerException(it.request.url.toString())
             }
             throw UnsuccessfulRequest(it.request.url.toString(), it.body?.string())
         }
-        if (it.body?.source() == null) {
-            return@map null
+        val body = it.body
+        if (body == null) {
+            throw EmptyResponseException(it.request.url.toString())
+        } else {
+            return@map responseAdapter.fromJson(body.source())
         }
-        return@map responseAdapter.fromJson(it.body!!.source())
     }
 }
 

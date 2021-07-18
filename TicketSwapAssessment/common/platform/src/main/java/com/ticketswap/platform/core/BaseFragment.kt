@@ -21,6 +21,6 @@ abstract class BaseFragment : Fragment() {
     private fun progressStatus(viewStatus: Int) =
         with(activity) { if (this is ContainerActivity) this.uiBinding.progress.visibility = viewStatus }
 
-    fun notify(@StringRes message: Int) =
+    fun notify(message: String) =
         Snackbar.make(viewContainer, message, Snackbar.LENGTH_SHORT).show()
 }

@@ -1,12 +1,13 @@
-@file:Suppress("ParameterListWrapping", "LongParameterList", "ConstructorParameterNaming")
-
 package com.ticketswap.assessment.feature.search.datasource.network
+
 
 import com.squareup.moshi.Json
 
 data class TrackDetailsResponse(
     val album: Album = Album(),
     val artists: List<Artist> = listOf(),
+    @Json(name = "available_markets")
+    val availableMarkets: List<Any> = listOf(),
     @Json(name = "disc_number")
     val discNumber: Int = 0,
     @Json(name = "duration_ms")
@@ -20,14 +21,10 @@ data class TrackDetailsResponse(
     val id: String = "",
     @Json(name = "is_local")
     val isLocal: Boolean = false,
-    @Json(name = "is_playable")
-    val isPlayable: Boolean = false,
-    @Json(name = "linked_from")
-    val linkedFrom: LinkedFrom = LinkedFrom(),
     val name: String = "",
     val popularity: Int = 0,
     @Json(name = "preview_url")
-    val previewUrl: Any = Any(),
+    val previewUrl: Any? = Any(),
     @Json(name = "track_number")
     val trackNumber: Int = 0,
     val type: String = "",
@@ -37,6 +34,8 @@ data class TrackDetailsResponse(
         @Json(name = "album_type")
         val albumType: String = "",
         val artists: List<Artist> = listOf(),
+        @Json(name = "available_markets")
+        val availableMarkets: List<Any> = listOf(),
         @Json(name = "external_urls")
         val externalUrls: ExternalUrls = ExternalUrls(),
         val href: String = "",
@@ -98,17 +97,4 @@ data class TrackDetailsResponse(
     data class ExternalUrls(
         val spotify: String = ""
     )
-
-    data class LinkedFrom(
-        @Json(name = "external_urls")
-        val externalUrls: ExternalUrls = ExternalUrls(),
-        val href: String = "",
-        val id: String = "",
-        val type: String = "",
-        val uri: String = ""
-    ) {
-        data class ExternalUrls(
-            val spotify: String = ""
-        )
-    }
 }

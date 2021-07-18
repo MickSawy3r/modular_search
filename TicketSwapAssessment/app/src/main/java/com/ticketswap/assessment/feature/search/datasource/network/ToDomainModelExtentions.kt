@@ -10,6 +10,7 @@ internal fun SearchResponse.toDomainModel(): List<SearchListItemDataModel> {
     this.artists.items.forEach {
         searchResult.add(
             SearchListItemDataModel(
+                id = it.id,
                 name = it.name,
                 searchItemType = SearchItemType.ARTIST
             )
@@ -18,6 +19,7 @@ internal fun SearchResponse.toDomainModel(): List<SearchListItemDataModel> {
     this.tracks.items.forEach {
         searchResult.add(
             SearchListItemDataModel(
+                id = it.id,
                 name = it.name,
                 searchItemType = SearchItemType.TRACK
             )

@@ -26,6 +26,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".feature.search.presentation.DetailsActivity" />
+
         <activity android:name=".feature.auth.presenter.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

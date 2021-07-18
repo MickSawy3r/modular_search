@@ -1,6 +1,7 @@
 package com.ticketswap.authenticator
 
 import android.content.Context
+import android.util.Log
 import java.util.Calendar
 
 class AuthGuard constructor(context: Context) {
@@ -10,19 +11,14 @@ class AuthGuard constructor(context: Context) {
         val token = prefStore.getAuthToken()
         val expiresIn = prefStore.getExpiresIn()
         val addedTime = prefStore.getLoggedInAt()
-        val currentTime = (Calendar.getInstance().time.time * MILLISECONDS_IN_SECOND).toInt()
+        val currentTime = CalendarHelper.nowInSeconds()
 
-        if (
-            currentTime > addedTime + expiresIn &&
-            token != "" &&
-            // If both are negative then this one fails: -1 + -1 = -2
-            // Written this way to avoid detekt warning
-            expiresIn + addedTime > -1
-        ) {
-            return true
-        }
+        Log.d(TAG, "userLoggedIn: Remaining ${currentTime - addedTime} Seconds")
 
-        return false
+        return currentTime - addedTime < expiresIn &&
+                token != "" &&
+                expiresIn > -1 &&
+                addedTime > -1
     }
 
     fun setLoggedIn(accessToken: String, expiresIn: Int) {
@@ -40,6 +36,6 @@ class AuthGuard constructor(context: Context) {
     fun getAuthToken(): String = prefStore.getAuthToken()
 
     companion object {
-        private const val MILLISECONDS_IN_SECOND = 1000
+        private const val TAG = "AuthGuard"
     }
 }

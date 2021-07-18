@@ -8,18 +8,16 @@ import com.ticketswap.assessment.feature.search.datasource.network.TrackDetailsR
 import com.ticketswap.network.createObjectAdapter
 import com.ticketswap.network.enqueue
 import io.reactivex.rxjava3.core.Single
-import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.Request
 
 class SearchApi : ISpotifyApi {
-    override fun searchSpotify(query: String): Single<SearchResponse> {
-        val url = HttpUrl.Builder()
-
-        url.addQueryParameter("q", query)
-        url.addQueryParameter("type", "track,artist")
+    override fun searchSpotify(query: String, authToken: String): Single<SearchResponse> {
+        val spotifyUrl = ("${BuildConfig.SPOTIFY_BASE_URL}search?q=$query&type=track,artist").toHttpUrl()
 
         return Request.Builder()
-            .url(url.build())
+            .url(spotifyUrl)
+            .addHeader("Authorization", authToken)
             .build()
             .enqueue(
                 responseAdapter = createObjectAdapter(),
@@ -30,6 +28,7 @@ class SearchApi : ISpotifyApi {
     override fun getTrackDetails(id: String, authToken: String): Single<TrackDetailsResponse> {
         return Request.Builder()
             .url("${BuildConfig.SPOTIFY_BASE_URL}tracks/$id")
+            .addHeader("Authorization", authToken)
             .build()
             .enqueue(
                 responseAdapter = createObjectAdapter(),
@@ -40,6 +39,7 @@ class SearchApi : ISpotifyApi {
     override fun getArtistDetails(id: String, authToken: String): Single<ArtistDetailsResponse> {
         return Request.Builder()
             .url("${BuildConfig.SPOTIFY_BASE_URL}artists/$id")
+            .addHeader("Authorization", authToken)
             .build()
             .enqueue(
                 responseAdapter = createObjectAdapter(),

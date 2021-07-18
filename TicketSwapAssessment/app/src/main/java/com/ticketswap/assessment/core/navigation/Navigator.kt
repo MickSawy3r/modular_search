@@ -24,7 +24,7 @@ class Navigator @Inject constructor(
         }
     }
 
-    private fun showLogin(context: Context) =
+    fun showLogin(context: Context) =
         context.startActivity(LoginActivity.callingIntent(context))
 
     private fun showSearch(context: Context) =
@@ -36,10 +36,7 @@ class Navigator @Inject constructor(
         navigationExtras: Extras
     ) {
         val intent = DetailsActivity.callingIntent(activity, searchItem)
-        val sharedView = navigationExtras.transitionSharedElement as ImageView
-        val activityOptions = ActivityOptionsCompat
-            .makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)
-        activity.startActivity(intent, activityOptions.toBundle())
+        activity.startActivity(intent)
     }
 
     class Extras(val transitionSharedElement: View)

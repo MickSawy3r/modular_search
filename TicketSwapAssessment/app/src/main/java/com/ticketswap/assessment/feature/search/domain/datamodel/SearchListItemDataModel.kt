@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SearchListItemDataModel(
+    val id: String,
     val name: String,
     val searchItemType: SearchItemType
 ) : Parcelable

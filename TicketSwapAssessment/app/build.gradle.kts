@@ -70,7 +70,7 @@ dependencies {
     implementation(Libraries.recyclerView)
     implementation(Libraries.material)
     implementation(Libraries.androidAnnotations)
-    implementation(Libraries.glide)
+    implementation(Libraries.picasso)
     implementation(Libraries.hilt)
     implementation(Libraries.spotify)
     implementation(Libraries.moshiAdapter)

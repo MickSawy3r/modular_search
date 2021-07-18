@@ -1,5 +1,6 @@
 package com.ticketswap.assessment.feature.search.datasource.network
 
+
 import com.squareup.moshi.Json
 
 data class ArtistDetailsResponse(
@@ -20,7 +21,7 @@ data class ArtistDetailsResponse(
     )
 
     data class Followers(
-        val href: Any = Any(),
+        val href: Any? = Any(),
         val total: Int = 0
     )
 

@@ -13,9 +13,9 @@ class SpotifyRepository @Inject constructor(
     private val spotifyService: ISpotifyRemoteDataSource,
     private val cache: ISearchCache
 ) {
-    fun search(query: String): Observable<List<SearchListItemDataModel>> {
+    fun search(query: String, token: String): Observable<List<SearchListItemDataModel>> {
         return Observable.fromSingle(
-            spotifyService.search(query)
+            spotifyService.search(query, token)
         ).doOnNext { searchResponse ->
             cache.saveCacheList(
                 searchResponse.toCacheEntryList()

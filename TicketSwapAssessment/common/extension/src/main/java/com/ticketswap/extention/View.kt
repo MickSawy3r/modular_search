@@ -3,8 +3,7 @@ package com.ticketswap.extention
 import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.FragmentActivity
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.squareup.picasso.Picasso
 
 fun View.cancelTransition() {
     transitionName = null
@@ -21,13 +20,13 @@ fun View.invisible() {
 }
 
 fun ImageView.loadFromUrl(url: String) =
-    Glide.with(this.context.applicationContext)
+    Picasso.get()
         .load(url)
-        .transition(DrawableTransitionOptions.withCrossFade())
+        .error(R.drawable.ic_image_load_error)
         .into(this)
 
 fun ImageView.loadUrlAndPostponeEnterTransition(url: String, activity: FragmentActivity) {
-    Glide.with(context.applicationContext)
+    Picasso.get()
         .load(url)
         .error(R.drawable.ic_image_load_error)
         .into(this)

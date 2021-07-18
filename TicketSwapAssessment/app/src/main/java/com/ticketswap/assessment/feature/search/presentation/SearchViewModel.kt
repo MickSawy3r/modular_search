@@ -36,6 +36,7 @@ class SearchViewModel @Inject constructor(
     private inner class SearchObserver : DisposableObserver<List<SearchListItemDataModel>>() {
 
         override fun onError(e: Throwable) {
+            Log.d(TAG, "onError: $e")
             setLoading(false)
             handleFailure(Failure.NetworkConnection)
         }

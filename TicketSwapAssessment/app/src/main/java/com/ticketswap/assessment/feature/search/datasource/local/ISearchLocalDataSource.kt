@@ -13,7 +13,8 @@ class ISearchLocalDataSource @Inject constructor(val cache: SearchCache) {
         return cache.saveCache(
             CacheEntry(
                 name = response.name,
-                type = response.searchItemType
+                type = response.searchItemType,
+                itemId = response.id
             )
         )
     }

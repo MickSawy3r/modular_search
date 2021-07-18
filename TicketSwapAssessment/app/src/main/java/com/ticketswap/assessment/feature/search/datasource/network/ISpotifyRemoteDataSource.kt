@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class ISpotifyRemoteDataSource @Inject constructor(private val iSpotifyApi: ISpotifyApi) {
 
-    fun search(query: String): Single<List<SearchListItemDataModel>> {
-        return iSpotifyApi.searchSpotify(query).map {
+    fun search(query: String, authToken: String): Single<List<SearchListItemDataModel>> {
+        return iSpotifyApi.searchSpotify(query, authToken).map {
             it.toDomainModel()
         }
     }

@@ -13,9 +13,11 @@ data class CacheEntry(
     @PrimaryKey val id: Date = Calendar.getInstance().time,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "type") val type: SearchItemType,
+    @ColumnInfo(name = "itemId") val itemId: String
 )
 
 internal fun CacheEntry.toDomainModel() = SearchListItemDataModel(
     name = this.name,
-    searchItemType = this.type
+    searchItemType = this.type,
+    id = this.itemId
 )

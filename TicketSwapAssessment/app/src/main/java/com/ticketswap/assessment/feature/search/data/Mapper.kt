@@ -6,7 +6,8 @@ import com.ticketswap.assessment.feature.search.domain.datamodel.SearchListItemD
 fun SearchListItemDataModel.toCacheEntry(): CacheEntry {
     return CacheEntry(
         name = this.name,
-        type = this.searchItemType
+        type = this.searchItemType,
+        itemId = this.id
     )
 }
 

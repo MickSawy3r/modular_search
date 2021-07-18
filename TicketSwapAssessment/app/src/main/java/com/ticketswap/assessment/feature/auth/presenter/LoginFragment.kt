@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
@@ -24,7 +24,7 @@ private const val TAG = "LoginFragment"
 @AndroidEntryPoint
 class LoginFragment : BaseFragment() {
 
-    val loginViewModel: LoginViewModel by viewModels()
+    private lateinit var loginViewModel: LoginViewModel
 
     @Inject
     lateinit var navigator: Navigator
@@ -34,6 +34,11 @@ class LoginFragment : BaseFragment() {
 
     private lateinit var uiBinding: FragmentLoginBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +47,7 @@ class LoginFragment : BaseFragment() {
         uiBinding =
             DataBindingUtil.inflate(layoutInflater, R.layout.fragment_login, container, false)
         setupUI()
+        setupListeners()
 
         return uiBinding.root
     }
@@ -50,6 +56,14 @@ class LoginFragment : BaseFragment() {
         uiBinding.buttonLogin.setOnClickListener {
             startSpotifyLoginActivity()
         }
+    }
+
+    private fun setupListeners() {
+        loginViewModel.loggedInLiveData.observe(viewLifecycleOwner, {
+            if (it) {
+                navigator.showMain(requireContext())
+            }
+        })
     }
 
     private fun startSpotifyLoginActivity() {

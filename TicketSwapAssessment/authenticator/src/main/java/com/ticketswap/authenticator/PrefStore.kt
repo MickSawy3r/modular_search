@@ -2,7 +2,6 @@ package com.ticketswap.authenticator
 
 import android.content.Context
 import android.content.SharedPreferences
-import java.util.*
 
 internal class PrefStore constructor(context: Context) {
     private val sharedPreferences: SharedPreferences =
@@ -42,10 +41,8 @@ internal class PrefStore constructor(context: Context) {
     }
 
     fun setLoggedInAt() {
-        // Time in milliseconds
-        val currentTime = (Calendar.getInstance().time.time * MILLISECONDS_IN_SECOND).toInt()
         sharedPreferences.edit()
-            .putInt(KEY_ADDED_AT, currentTime)
+            .putInt(KEY_ADDED_AT, CalendarHelper.nowInSeconds())
             .apply()
     }
 
@@ -64,6 +61,5 @@ internal class PrefStore constructor(context: Context) {
         private const val KEY_TOKEN = "token"
         private const val KEY_EXPIRES_IN = "expires-in"
         private const val KEY_ADDED_AT = "added-at"
-        private const val MILLISECONDS_IN_SECOND = 1000
     }
 }
