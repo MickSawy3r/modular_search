@@ -8,8 +8,12 @@ import androidx.databinding.DataBindingUtil
 import com.ticketswap.assessment.R
 import com.ticketswap.assessment.databinding.FragmentDetailsBinding
 import com.ticketswap.platform.core.BaseFragment
+import javax.inject.Inject
 
 class DetailsFragment : BaseFragment() {
+
+    @Inject
+    lateinit var itemDetailsAnimator: ItemDetailsAnimator
 
     lateinit var uiBinding: FragmentDetailsBinding
 
@@ -17,9 +21,15 @@ class DetailsFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        uiBinding =
-            DataBindingUtil.inflate(layoutInflater, R.layout.fragment_details, container, false)
-        return super.onCreateView(inflater, container, savedInstanceState)
+    ): View {
+        uiBinding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.fragment_details,
+            container,
+            false
+        )
+
+        activity?.let { itemDetailsAnimator.postponeEnterTransition(it) }
+        return uiBinding.root
     }
 }

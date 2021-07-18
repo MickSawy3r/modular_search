@@ -3,7 +3,7 @@ package com.ticketswap.assessment.feature.search.presentation
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ticketswap.platform.exception.Failure
+import com.ticketswap.extention.exception.Failure
 import com.ticketswap.platform.core.BaseViewModel
 import com.ticketswap.assessment.feature.search.domain.datamodel.SearchListItemDataModel
 import com.ticketswap.assessment.feature.search.domain.usecase.GetLastSearchUseCase

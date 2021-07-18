@@ -1,6 +1,6 @@
 package com.ticketswap.assessment.feature.auth.domain.failures
 
-import com.ticketswap.platform.exception.Failure
+import com.ticketswap.extention.exception.Failure
 
 class LoginErrorFailure constructor(val reason: String?) : Failure.FeatureFailure() {
     override fun toString(): String {

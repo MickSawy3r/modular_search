@@ -22,9 +22,9 @@ class SearchFragment : BaseFragment() {
     @Inject
     lateinit var searchAdapter: SearchAdapter
 
-    lateinit var searchViewModel: SearchViewModel
+    private lateinit var searchViewModel: SearchViewModel
 
-    lateinit var uiBinding: FragmentSearchBinding
+    private lateinit var uiBinding: FragmentSearchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +65,8 @@ class SearchFragment : BaseFragment() {
             }
         })
 
-        searchAdapter.clickListener = { _, _ ->
-            // TODO: Navigate to Details
+        searchAdapter.clickListener = { item, navigationExtras ->
+            navigator.showSearchItemDetails(requireActivity(), item, navigationExtras)
         }
 
         uiBinding.buttonSearch.setOnClickListener {

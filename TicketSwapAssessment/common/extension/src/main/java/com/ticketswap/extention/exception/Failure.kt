@@ -1,4 +1,4 @@
-package com.ticketswap.platform.exception
+package com.ticketswap.extention.exception
 
 sealed class Failure : Exception() {
     object NetworkConnection : Failure()

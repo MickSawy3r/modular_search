@@ -2,6 +2,8 @@ package com.ticketswap.assessment.feature.search.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.ItemSearchBinding

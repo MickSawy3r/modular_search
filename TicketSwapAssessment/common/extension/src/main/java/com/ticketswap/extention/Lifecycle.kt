@@ -1,9 +1,9 @@
-package com.ticketswap.assessment.core.extension
+package com.ticketswap.extention
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import com.ticketswap.platform.exception.Failure
+import com.ticketswap.extention.exception.Failure
 
 fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(liveData: L, body: (T?) -> Unit) =
     liveData.observe(this, Observer(body))

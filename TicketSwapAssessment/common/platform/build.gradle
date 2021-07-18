@@ -2,6 +2,8 @@ apply from: "$rootDir/common-android-library.gradle"
 apply plugin: BuildPlugins.androidHilt
 
 dependencies {
+    implementation(project(":common:extension"))
+
     kapt(Libraries.lifecycleCompiler)
     kapt(Libraries.hiltCompiler)
 

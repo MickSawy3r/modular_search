@@ -4,6 +4,7 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinKapt)
     id(BuildPlugins.androidHilt)
+    id(BuildPlugins.kotlinParcelize)
 
     // Internal Script plugins
     id(ScriptPlugins.variants)
@@ -41,6 +42,7 @@ dependencies {
     implementation(project(":common:network"))
     implementation(project(":common:extension"))
     implementation(project(":common:platform"))
+    implementation(project(":common:extension"))
     implementation(project(":authenticator"))
 
     annotationProcessor(Libraries.roomAnnotationProcessor)
