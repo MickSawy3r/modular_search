@@ -21,15 +21,12 @@ class SearchViewModel @Inject constructor(
     private val _searchLiveData: MutableLiveData<List<SearchListItemDataModel>> = MutableLiveData()
     val searchLiveData: LiveData<List<SearchListItemDataModel>> = _searchLiveData
 
-    private val _loadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
-    val loadingLiveData: LiveData<Boolean> = _loadingLiveData
-
     fun start() {
         getLastSearchUseCase.execute(observer = SearchObserver())
     }
 
     fun search(query: String) {
-        _loadingLiveData.postValue(true)
+        setLoading(true)
         searchSpotifyUseCase.execute(
             observer = SearchObserver(),
             params = query
@@ -39,12 +36,12 @@ class SearchViewModel @Inject constructor(
     private inner class SearchObserver : DisposableObserver<List<SearchListItemDataModel>>() {
 
         override fun onError(e: Throwable) {
-            _loadingLiveData.postValue(false)
+            setLoading(false)
             handleFailure(Failure.NetworkConnection)
         }
 
         override fun onNext(t: List<SearchListItemDataModel>?) {
-            _loadingLiveData.postValue(false)
+            setLoading(false)
             _searchLiveData.postValue(t)
         }
 

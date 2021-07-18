@@ -37,6 +37,8 @@ class AuthGuard constructor(context: Context) {
         prefStore.removeLoggedInAt()
     }
 
+    fun getAuthToken(): String = prefStore.getAuthToken()
+
     companion object {
         private const val MILLISECONDS_IN_SECOND = 1000
     }
