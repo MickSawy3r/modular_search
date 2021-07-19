@@ -94,6 +94,7 @@ class ArtistDetailsFragment : BaseFragment() {
         Log.d(TAG, "renderDetails: ")
         item?.let {
             uiBinding.tvName.text = item.name
+            uiBinding.cgGenreChips.removeAllViews()
             if (it.genres.isEmpty()) {
                 uiBinding.cgGenreChips.addView("Not Set".toChip(requireContext()))
             } else {
@@ -131,7 +132,7 @@ class ArtistDetailsFragment : BaseFragment() {
 
 fun String.toChip(context: Context): Chip {
     val chip = Chip(context)
-    chip.text = this
+    chip.text = this.uppercase()
     return chip
 }
 

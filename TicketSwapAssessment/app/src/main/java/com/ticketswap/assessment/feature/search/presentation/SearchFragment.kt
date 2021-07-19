@@ -61,13 +61,14 @@ class SearchFragment : BaseFragment(), ConnectivityCallback {
 
         setupUI()
 
-        searchViewModel.start()
+        searchViewModel.fetchCache()
 
         return uiBinding.root
     }
 
     override fun onResume() {
         super.onResume()
+        searchViewModel.fetchCache()
         activity?.attachConnectivityBroadcastReceiver(connectivityBroadcastReceiver)
     }
 

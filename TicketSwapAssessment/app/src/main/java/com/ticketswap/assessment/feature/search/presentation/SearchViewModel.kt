@@ -26,7 +26,7 @@ class SearchViewModel @Inject constructor(
     private var lastSearchQuery: String? = null
     private var hasQue = false
 
-    fun start() {
+    fun fetchCache() {
         setLoading(true)
         getLastSearchUseCase.execute(
             observer = SearchObserver()
