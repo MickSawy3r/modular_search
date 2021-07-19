@@ -91,10 +91,8 @@ class SearchFragment : BaseFragment(), ConnectivityCallback {
 
     override fun onConnectionChange(connected: Boolean) {
         if (!connected) {
-            uiBinding.llNoInternet.visibility = View.VISIBLE
             searchViewModel.setNetworkAvailable(false)
         } else {
-            uiBinding.llNoInternet.visibility = View.GONE
             searchViewModel.setNetworkAvailable(true)
         }
     }

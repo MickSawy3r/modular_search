@@ -66,8 +66,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun startSpotifyLoginActivity() {
-        val spotifyClientId =
-            "84ea753e599142b8bace9b63d153227b" // Feel free to use this spotify app
+        val spotifyClientId = getString(R.string.spotify_key)
 
         val authRequest = AuthorizationRequest.Builder(
             spotifyClientId,

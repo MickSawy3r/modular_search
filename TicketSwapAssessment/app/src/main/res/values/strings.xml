@@ -11,4 +11,6 @@
     <string name="retry">Retry</string>
     <string name="null_search_query">Null Search Query</string>
     <string name="search">Search</string>
+
+    <string name="spotify_key">fdd7cb8326e047bf90f58e12b1abf25e</string>
 </resources>
