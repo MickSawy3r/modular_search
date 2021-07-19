@@ -1,14 +1,14 @@
 package com.ticketswap.assessment.feature.search.data
 
-import com.ticketswap.assessment.feature.search.datasource.local.ISearchLocalDataSource
-import com.ticketswap.assessment.feature.search.datasource.network.ISpotifyRemoteDataSource
+import com.ticketswap.assessment.feature.search.datasource.local.SearchLocalDataSource
+import com.ticketswap.assessment.feature.search.datasource.network.SpotifyRemoteDataSource
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class SpotifyRepository @Inject constructor(
-    private val spotifyService: ISpotifyRemoteDataSource,
-    private val cache: ISearchLocalDataSource
+    private val spotifyService: SpotifyRemoteDataSource,
+    private val cache: SearchLocalDataSource
 ) {
     fun search(query: String, token: String): Single<List<SpotifyDataModel>> {
         return spotifyService.search(query, token)

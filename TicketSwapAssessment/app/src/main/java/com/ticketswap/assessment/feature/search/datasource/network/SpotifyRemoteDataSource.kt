@@ -4,7 +4,7 @@ import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataMode
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
-class ISpotifyRemoteDataSource @Inject constructor(private val iSpotifyApi: ISpotifyApi) {
+class SpotifyRemoteDataSource @Inject constructor(private val iSpotifyApi: ISpotifyApi) {
 
     fun search(query: String, authToken: String): Single<List<SpotifyDataModel>> {
         return iSpotifyApi.searchSpotify(query, authToken).map {

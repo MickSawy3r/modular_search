@@ -5,7 +5,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
-class ISearchLocalDataSource @Inject constructor(val cache: ISearchCache) {
+class SearchLocalDataSource @Inject constructor(val cache: ISearchCache) {
     fun saveCache(response: SpotifyDataModel): Completable {
         return cache.saveCache(
             CacheEntry(
