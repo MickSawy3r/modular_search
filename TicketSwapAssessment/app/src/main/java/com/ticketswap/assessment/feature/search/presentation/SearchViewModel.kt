@@ -1,5 +1,6 @@
 package com.ticketswap.assessment.feature.search.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
@@ -21,8 +22,8 @@ class SearchViewModel @Inject constructor(
     private val _searchLiveData: MutableLiveData<List<SpotifyDataModel>> = MutableLiveData()
     val search: LiveData<List<SpotifyDataModel>> = _searchLiveData
 
-    var isConnected = false
-    var lastSearchQuery: String? = null
+    private var isConnected = false
+    private var lastSearchQuery: String? = null
 
     fun start() {
         setLoading(true)
@@ -58,6 +59,7 @@ class SearchViewModel @Inject constructor(
     private inner class SearchObserver : DisposableSingleObserver<List<SpotifyDataModel>>() {
 
         override fun onError(e: Throwable) {
+            Log.d(TAG, "onError: $e at \n${e.stackTrace}")
             setLoading(false)
             if (e is UnauthorizedException) {
                 handleFailure(Failure.UnauthorizedError)

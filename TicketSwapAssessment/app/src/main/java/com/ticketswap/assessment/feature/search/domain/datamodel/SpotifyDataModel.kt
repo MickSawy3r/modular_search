@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class SpotifyDataModel(
     val name: String,
-    val images: List<String>,
+    val image: String,
     val type: SearchItemType,
     val id: String
 ) : Parcelable

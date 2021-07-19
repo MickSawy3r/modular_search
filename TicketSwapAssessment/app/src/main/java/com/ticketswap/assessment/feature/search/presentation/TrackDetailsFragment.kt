@@ -9,46 +9,38 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import com.ticketswap.assessment.R
 import com.ticketswap.assessment.core.navigation.Navigator
-import com.ticketswap.assessment.databinding.FragmentDetailsBinding
+import com.ticketswap.assessment.databinding.FragmentTrackDetailsBinding
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
-import com.ticketswap.extention.Failure
-import com.ticketswap.extention.failure
-import com.ticketswap.extention.loading
-import com.ticketswap.extention.observe
+import com.ticketswap.assessment.feature.search.domain.datamodel.TrackDetailsDataModel
+import com.ticketswap.extention.*
 import com.ticketswap.platform.core.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class DetailsFragment : BaseFragment() {
+class TrackDetailsFragment : BaseFragment() {
 
     companion object {
         private const val PARAM_SEARCH_ITEM = "SEARCH_ITEM"
         private const val TAG = "DetailsFragment"
 
-        fun forItem(item: SpotifyDataModel) = DetailsFragment().apply {
+        fun forItem(item: SpotifyDataModel) = TrackDetailsFragment().apply {
             arguments = bundleOf(PARAM_SEARCH_ITEM to item)
         }
     }
 
     @Inject
-    lateinit var itemDetailsAnimator: ItemDetailsAnimator
-
-    @Inject
-    lateinit var detailsAdapter: DetailsAdapter
-
-    @Inject
     lateinit var navigator: Navigator
 
-    private lateinit var detailsViewMode: DetailsViewModel
-    private lateinit var uiBinding: FragmentDetailsBinding
+    private lateinit var trackDetailsViewMode: TrackDetailsViewModel
+    private lateinit var uiBinding: FragmentTrackDetailsBinding
     private lateinit var detailsItem: SpotifyDataModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        detailsViewMode = ViewModelProvider(this).get(DetailsViewModel::class.java)
+        trackDetailsViewMode = ViewModelProvider(this).get(TrackDetailsViewModel::class.java)
 
-        with(detailsViewMode) {
+        with(trackDetailsViewMode) {
             observe(details, ::renderDetails)
             loading(loading, ::handleLoading)
             failure(failure, ::handleFailure)
@@ -60,7 +52,7 @@ class DetailsFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        uiBinding = FragmentDetailsBinding.inflate(
+        uiBinding = FragmentTrackDetailsBinding.inflate(
             layoutInflater,
             container,
             false
@@ -73,17 +65,15 @@ class DetailsFragment : BaseFragment() {
     }
 
     private fun setupUI() {
-        uiBinding.rvImages.adapter = detailsAdapter
-
         detailsItem = arguments?.get(PARAM_SEARCH_ITEM) as SpotifyDataModel
-        detailsViewMode.loadDetails(detailsItem.id, detailsItem.type)
+        trackDetailsViewMode.loadDetails(detailsItem.id, detailsItem.type)
     }
 
     private fun setupListeners() {
-        detailsViewMode.details.observe(viewLifecycleOwner, {
+        trackDetailsViewMode.details.observe(viewLifecycleOwner, {
             renderDetails(it)
         })
-        detailsViewMode.failure.observe(viewLifecycleOwner, {
+        trackDetailsViewMode.failure.observe(viewLifecycleOwner, {
             if (it is Failure.UnauthorizedError) {
                 navigator.showLogin(requireContext())
             }
@@ -98,11 +88,11 @@ class DetailsFragment : BaseFragment() {
         }
     }
 
-    private fun renderDetails(item: SpotifyDataModel?) {
-        Log.d(TAG, "renderDetails: ")
+    private fun renderDetails(item: TrackDetailsDataModel?) {
         item?.let {
-            detailsAdapter.collection = item.images
-            uiBinding.tvTitle.text = item.name
+            uiBinding.ivHeaderImage.loadFromUrl(item.image)
+            uiBinding.tvName.text = item.name
+            uiBinding.tvRelease.text = item.year
         }
     }
 
@@ -110,7 +100,7 @@ class DetailsFragment : BaseFragment() {
         when (failure) {
             is Failure.NetworkConnection -> {
                 notifyWithAction(R.string.failure_network_connection, R.string.retry) {
-                    detailsViewMode.loadDetails(detailsItem.id, detailsItem.type)
+                    trackDetailsViewMode.loadDetails(detailsItem.id, detailsItem.type)
                 }
             }
             is EmptySearchQueryFailure -> {

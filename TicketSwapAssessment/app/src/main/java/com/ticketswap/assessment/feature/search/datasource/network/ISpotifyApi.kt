@@ -5,7 +5,7 @@ import io.reactivex.rxjava3.core.Single
 interface ISpotifyApi {
     fun searchSpotify(query: String, authToken: String): Single<SearchResponse>
 
-    fun getArtistAlbums(id: String, authToken: String): Single<ArtistAlbumsResponse>
-
     fun getArtistDetails(id: String, authToken: String): Single<ArtistDetailsResponse>
+
+    fun getTrackDetails(id: String, authToken: String): Single<TrackDetailsResponse>
 }

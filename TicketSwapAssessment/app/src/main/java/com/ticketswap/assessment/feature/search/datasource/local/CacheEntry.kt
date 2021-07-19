@@ -15,14 +15,14 @@ data class CacheEntry(
     @ColumnInfo(name = "type") val type: SearchItemType,
     @ColumnInfo(name = "itemId") val itemId: String,
     @ColumnInfo(name = "date") val createdAt: Date = Calendar.getInstance().time,
-    @ColumnInfo(name = "images") val images: List<String> = listOf()
+    @ColumnInfo(name = "images") val image: String
 )
 
 fun CacheEntry.toDomainModel() = SpotifyDataModel(
     name = this.name,
     type = this.type,
     id = this.itemId,
-    images = this.images
+    image = this.image
 )
 
 fun List<CacheEntry>.toDomainModel() = this.map { it.toDomainModel() }

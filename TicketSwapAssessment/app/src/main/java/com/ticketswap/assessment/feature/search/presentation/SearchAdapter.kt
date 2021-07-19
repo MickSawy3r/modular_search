@@ -37,11 +37,7 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.S
             clickListener: (SpotifyDataModel, Navigator.Extras) -> Unit
         ) {
             itemRow.name.text = searchItem.name
-            if (searchItem.images.isNotEmpty()) {
-                if (searchItem.images[0].isNotEmpty()) {
-                    itemRow.ivImage.loadCircularFromUrl(searchItem.images[0])
-                }
-            }
+            itemRow.ivImage.loadCircularFromUrl(searchItem.image)
             itemView.setOnClickListener {
                 clickListener(
                     searchItem,

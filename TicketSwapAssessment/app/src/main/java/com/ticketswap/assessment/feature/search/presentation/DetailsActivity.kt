@@ -2,6 +2,7 @@ package com.ticketswap.assessment.feature.search.presentation
 
 import android.content.Context
 import android.content.Intent
+import com.ticketswap.assessment.feature.search.domain.datamodel.SearchItemType
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 import com.ticketswap.platform.core.BaseFragment
 import com.ticketswap.platform.core.ContainerActivity
@@ -10,12 +11,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailsActivity : ContainerActivity() {
     override fun fragment(): BaseFragment {
-        val item: SpotifyDataModel? = intent.getParcelableExtra(INTENT_EXTRA_PARAM_MOVIE)
-        return if (item != null) {
-            DetailsFragment.forItem(item)
-        } else {
-            // TODO Change this to Error Fragment
-            DetailsFragment()
+        val item: SpotifyDataModel = intent.getParcelableExtra(INTENT_EXTRA_PARAM_MOVIE)
+            ?: return ErrorFragment()
+
+        return when (item.type) {
+            SearchItemType.ELSE -> ErrorFragment()
+            SearchItemType.ARTIST -> ArtistDetailsFragment.forItem(item)
+            SearchItemType.TRACK -> TrackDetailsFragment.forItem(item)
         }
     }
 

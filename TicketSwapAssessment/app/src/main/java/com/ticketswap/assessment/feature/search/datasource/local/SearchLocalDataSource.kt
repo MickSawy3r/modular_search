@@ -1,19 +1,32 @@
 package com.ticketswap.assessment.feature.search.datasource.local
 
-import android.os.Parcelable
+import com.ticketswap.assessment.feature.search.domain.datamodel.ArtistDetailsDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.SearchItemType
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.TrackDetailsDataModel
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class SearchLocalDataSource @Inject constructor(val cache: ISearchCache) {
-    fun saveCache(response: SpotifyDataModel): Completable {
+    fun saveCache(response: ArtistDetailsDataModel): Completable {
         return cache.saveCache(
             CacheEntry(
                 name = response.name,
-                type = response.type,
+                type = SearchItemType.ARTIST,
                 itemId = response.id,
-                images = response.images
+                image = response.image
+            )
+        )
+    }
+
+    fun saveCache(response: TrackDetailsDataModel): Completable {
+        return cache.saveCache(
+            CacheEntry(
+                name = response.name,
+                type = SearchItemType.TRACK,
+                itemId = response.id,
+                image = response.image
             )
         )
     }

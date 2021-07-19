@@ -19,15 +19,23 @@ fun View.invisible() {
     this.visibility = View.GONE
 }
 
-fun ImageView.loadFromUrl(url: String) =
-    Picasso.get()
+fun ImageView.loadFromUrl(url: String) {
+    if (url.isEmpty()) {
+        return
+    }
+    return Picasso.get()
         .load(url)
         .error(R.drawable.ic_image_load_error)
         .into(this)
+}
 
-fun ImageView.loadCircularFromUrl(url: String) =
-    Picasso.get()
+fun ImageView.loadCircularFromUrl(url: String) {
+    if (url.isEmpty()) {
+        return
+    }
+    return Picasso.get()
         .load(url)
         .transform(CircleTransform())
         .error(R.drawable.ic_image_load_error)
         .into(this)
+}

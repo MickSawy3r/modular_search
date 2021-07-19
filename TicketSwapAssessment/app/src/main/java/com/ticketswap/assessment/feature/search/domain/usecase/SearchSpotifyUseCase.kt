@@ -1,5 +1,6 @@
 package com.ticketswap.assessment.feature.search.domain.usecase
 
+import android.util.Log
 import com.ticketswap.assessment.feature.search.data.SpotifyRepository
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 import com.ticketswap.assessment.feature.search.domain.failures.NullQueryFailure

@@ -1,6 +1,8 @@
 package com.ticketswap.assessment.feature.search.datasource.network
 
+import com.ticketswap.assessment.feature.search.domain.datamodel.ArtistDetailsDataModel
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
+import com.ticketswap.assessment.feature.search.domain.datamodel.TrackDetailsDataModel
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
@@ -12,14 +14,14 @@ class SpotifyRemoteDataSource @Inject constructor(private val iSpotifyApi: ISpot
         }
     }
 
-    fun getArtistDetails(id: String, authToken: String): Single<SpotifyDataModel> {
+    fun getArtistDetails(id: String, authToken: String): Single<ArtistDetailsDataModel> {
         return iSpotifyApi.getArtistDetails(id, authToken).map {
             it.toDomainModel()
         }
     }
 
-    fun getArtistAlbums(id: String, authToken: String): Single<SpotifyDataModel> {
-        return iSpotifyApi.getArtistAlbums(id, authToken).map {
+    fun getTrackDetails(id: String, authToken: String): Single<TrackDetailsDataModel> {
+        return iSpotifyApi.getTrackDetails(id, authToken).map {
             it.toDomainModel()
         }
     }

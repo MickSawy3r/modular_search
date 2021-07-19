@@ -8,6 +8,7 @@ fun SpotifyDataModel.toCacheEntry(): CacheEntry {
         name = this.name,
         type = this.type,
         itemId = this.id,
+        image = this.image
     )
 }
 

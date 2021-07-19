@@ -12,7 +12,7 @@ import com.ticketswap.extention.Failure
  */
 abstract class BaseViewModel : ViewModel() {
 
-    private val _loading: MutableLiveData<Boolean> = MutableLiveData()
+    private val _loading: MutableLiveData<Boolean> = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
 
     private val _failure: MutableLiveData<Failure> = MutableLiveData()
