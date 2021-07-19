@@ -1,7 +1,6 @@
 package com.ticketswap.assessment.feature.search.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -93,6 +92,7 @@ class TrackDetailsFragment : BaseFragment() {
             uiBinding.ivHeaderImage.loadFromUrl(item.image)
             uiBinding.tvName.text = item.name
             uiBinding.tvRelease.text = item.year
+            uiBinding.tvArtist.text = item.artist
         }
     }
 

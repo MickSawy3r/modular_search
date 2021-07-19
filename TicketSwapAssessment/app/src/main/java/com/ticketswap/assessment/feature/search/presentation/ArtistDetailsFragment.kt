@@ -1,5 +1,6 @@
 package com.ticketswap.assessment.feature.search.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.chip.Chip
 import com.ticketswap.assessment.R
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.FragmentArtistDetailsBinding
@@ -92,7 +94,13 @@ class ArtistDetailsFragment : BaseFragment() {
         Log.d(TAG, "renderDetails: ")
         item?.let {
             uiBinding.tvName.text = item.name
-            uiBinding.tvGenre.text = item.genres.toString()
+            if (it.genres.isEmpty()) {
+                uiBinding.cgGenreChips.addView("Not Set".toChip(requireContext()))
+            } else {
+                item.genres.toChips(requireContext()).forEach { chip ->
+                    uiBinding.cgGenreChips.addView(chip)
+                }
+            }
             uiBinding.tvFollowers.text = item.followers.toString()
             uiBinding.ivHeaderImage.loadFromUrl(item.image)
         }
@@ -119,4 +127,14 @@ class ArtistDetailsFragment : BaseFragment() {
             }
         }
     }
+}
+
+fun String.toChip(context: Context): Chip {
+    val chip = Chip(context)
+    chip.text = this
+    return chip
+}
+
+fun List<String>.toChips(context: Context): List<Chip> {
+    return this.map { it.toChip(context) }
 }

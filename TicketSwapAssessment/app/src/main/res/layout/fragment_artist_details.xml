@@ -9,90 +9,91 @@
         android:id="@+id/iv_header_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/divider"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@id/card_artist"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/divider"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_artist"
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_title_name"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Artist Name: "
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider" />
+        app:layout_constraintBottom_toTopOf="@id/card_followers">
 
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_title_name"
-        app:layout_constraintTop_toBottomOf="@id/divider"
-        tools:text="@tools:sample/full_names" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tv_title_genre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Generes: "
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_name" />
+            <TextView
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Artist Name" />
 
-    <TextView
-        android:id="@+id/tv_genre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_title_genre"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_name"
-        tools:text="@tools:sample/full_names" />
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                tools:text="@tools:sample/full_names" />
 
-    <TextView
-        android:id="@+id/tv_title_followers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Artist: "
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_genre" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/tv_followers"
-        android:layout_width="0dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_followers"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_title_followers"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_genre"
-        tools:text="@tools:sample/full_names" />
+        app:layout_constraintBottom_toTopOf="@id/card_genre">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Followers" />
+
+            <TextView
+                android:id="@+id/tv_followers"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                tools:text="@tools:sample/full_names" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Genre" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_genre_chips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
