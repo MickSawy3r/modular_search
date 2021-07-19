@@ -3,7 +3,6 @@ package com.ticketswap.assessment.feature.search.cache
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.ticketswap.assessment.feature.search.cache.converter.CacheConverters
 import com.ticketswap.assessment.feature.search.datasource.local.CacheEntry
 
 @Database(

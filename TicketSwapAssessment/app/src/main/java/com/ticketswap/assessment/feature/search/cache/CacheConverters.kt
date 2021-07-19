@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.feature.search.cache.converter
+package com.ticketswap.assessment.feature.search.cache
 
 import androidx.room.TypeConverter
 import com.ticketswap.assessment.feature.search.domain.datamodel.SearchItemType
