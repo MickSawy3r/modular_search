@@ -2,11 +2,9 @@ package com.ticketswap.assessment.feature.search.presentation
 
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.ticketswap.assessment.R
 import com.ticketswap.assessment.core.navigation.Navigator
@@ -111,15 +109,18 @@ class SearchFragment : BaseFragment(), ConnectivityCallback {
     }
 
     private fun renderSearchResult(data: List<SpotifyDataModel>?) {
+        uiBinding.recycler.visibility = View.VISIBLE
+        uiBinding.llNoInternet.visibility = View.GONE
+
         searchAdapter.collection = data.orEmpty()
 
         val result = data.orEmpty()
-        Log.d(TAG, "renderSearchResult: ${result.size}")
+
         if (result.isEmpty()) {
-            uiBinding.llEmptyList.visibility = View.VISIBLE
+            uiBinding.lottieEmptyList.visibility = View.VISIBLE
             uiBinding.recycler.visibility = View.GONE
         } else {
-            uiBinding.llEmptyList.visibility = View.GONE
+            uiBinding.lottieEmptyList.visibility = View.GONE
             uiBinding.recycler.visibility = View.VISIBLE
         }
     }
@@ -131,9 +132,8 @@ class SearchFragment : BaseFragment(), ConnectivityCallback {
     private fun handleFailure(failure: Failure?) {
         when (failure) {
             is Failure.NetworkConnection -> {
-                notifyWithAction(R.string.failure_network_connection, R.string.retry) {
-                    searchViewModel.retry()
-                }
+                uiBinding.recycler.visibility = View.GONE
+                uiBinding.llNoInternet.visibility = View.VISIBLE
             }
             is EmptySearchQueryFailure -> {
                 notify(R.string.null_search_query)

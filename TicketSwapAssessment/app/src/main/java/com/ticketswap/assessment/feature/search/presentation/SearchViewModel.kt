@@ -24,6 +24,7 @@ class SearchViewModel @Inject constructor(
 
     private var isConnected = false
     private var lastSearchQuery: String? = null
+    private var hasQue = false
 
     fun start() {
         setLoading(true)
@@ -45,15 +46,19 @@ class SearchViewModel @Inject constructor(
                 observer = SearchObserver(),
                 params = query
             )
+        } else {
+            hasQue = true
+            setLoading(false)
+            handleFailure(Failure.NetworkConnection)
         }
-    }
-
-    fun retry() {
-        lastSearchQuery?.let { search(it) }
     }
 
     fun setNetworkAvailable(isConnected: Boolean) {
         this.isConnected = isConnected
+        if (hasQue) {
+            hasQue = false
+            lastSearchQuery?.let { search(it) }
+        }
     }
 
     private inner class SearchObserver : DisposableSingleObserver<List<SpotifyDataModel>>() {

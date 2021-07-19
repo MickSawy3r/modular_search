@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Query
 import com.ticketswap.assessment.feature.search.datasource.local.CacheEntry
 import com.ticketswap.cache.BaseCacheDao
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import java.util.Date
 

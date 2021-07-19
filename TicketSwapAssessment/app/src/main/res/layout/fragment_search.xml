@@ -7,20 +7,6 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/ll_no_internet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_light"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/not_connected_to_the_internet"
-            android:textColor="@color/white" />
-    </FrameLayout>
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_search"
         android:layout_width="match_parent"
@@ -43,11 +29,36 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_search" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/ll_empty_list"
+    <LinearLayout
+        android:id="@+id/ll_no_internet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:lottie_fileName="empty_list.json"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please Connect to the Internet"
+            android:textAlignment="center" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_no_internet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="no_internet.json"
+            app:lottie_loop="true" />
+    </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_empty_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"/>
+        app:lottie_fileName="empty_list.json"
+        app:lottie_loop="true" />
 </LinearLayout>
