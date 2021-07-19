@@ -3,7 +3,7 @@ package com.ticketswap.authenticator
 import java.util.Calendar
 import kotlin.math.abs
 
-object CalendarHelper {
+internal object CalendarHelper {
     fun nowInSeconds(): Int {
         val now = Calendar.getInstance().time.time
         return abs(now.toInt() / MILLISECONDS_IN_SECOND)

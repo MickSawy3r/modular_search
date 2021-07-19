@@ -2,7 +2,6 @@ package com.ticketswap.authenticator
 
 import android.content.Context
 import android.util.Log
-import java.util.Calendar
 
 class AuthGuard constructor(context: Context) {
     private var prefStore: PrefStore = PrefStore(context)

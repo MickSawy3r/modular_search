@@ -5,11 +5,11 @@ import io.reactivex.rxjava3.core.Single
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 
 /**
  * An extension for the Request object to perform a network call
+ * I'm not against creating classes, I just like this way more at the moment :-)
  * @throws UnsuccessfulRequest
  */
 fun <T> Request.enqueue(
