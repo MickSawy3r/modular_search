@@ -26,6 +26,6 @@ class LoadArtistDetailsUseCase @Inject constructor(
             return Single.error(SessionExpiredFailure())
         }
 
-        return spotifyRepository.getArtistDetails(params, authGuard.getAuthToken())
+        return spotifyRepository.getArtistAlbums(params, authGuard.getAuthToken())
     }
 }

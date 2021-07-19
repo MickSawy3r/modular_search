@@ -19,7 +19,7 @@ internal fun SearchResponse.toDomainModel(): List<SpotifyDataModel> {
     this.tracks.items.forEach {
         searchResult.add(
             SpotifyDataModel(
-                id = it.id,
+                id = it.artists[0].id,
                 name = it.name,
                 type = SearchItemType.TRACK,
                 images = it.album.images.map { image -> image.url }
@@ -39,11 +39,11 @@ internal fun ArtistDetailsResponse.toDomainModel(): SpotifyDataModel {
     )
 }
 
-internal fun TrackDetailsResponse.toDomainModel(): SpotifyDataModel {
+internal fun ArtistAlbumsResponse.toDomainModel(): SpotifyDataModel {
     return SpotifyDataModel(
-        name = this.name,
-        images = this.album.images.map { it.url },
-        id = this.id,
+        name = this.items[0].name,
+        images = this.items.map { it.images[0].url },
+        id = this.items[0].id,
         type = SearchItemType.TRACK
     )
 }

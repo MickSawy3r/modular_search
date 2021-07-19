@@ -4,7 +4,7 @@ import com.ticketswap.assessment.BuildConfig
 import com.ticketswap.assessment.feature.search.datasource.network.ArtistDetailsResponse
 import com.ticketswap.assessment.feature.search.datasource.network.ISpotifyApi
 import com.ticketswap.assessment.feature.search.datasource.network.SearchResponse
-import com.ticketswap.assessment.feature.search.datasource.network.TrackDetailsResponse
+import com.ticketswap.assessment.feature.search.datasource.network.ArtistAlbumsResponse
 import com.ticketswap.network.createObjectAdapter
 import com.ticketswap.network.enqueue
 import io.reactivex.rxjava3.core.Single
@@ -25,9 +25,9 @@ class SearchApi : ISpotifyApi {
             )
     }
 
-    override fun getTrackDetails(id: String, authToken: String): Single<TrackDetailsResponse> {
+    override fun getArtistAlbums(id: String, authToken: String): Single<ArtistAlbumsResponse> {
         return Request.Builder()
-            .url("${BuildConfig.SPOTIFY_BASE_URL}tracks/$id")
+            .url("${BuildConfig.SPOTIFY_BASE_URL}artists/$id/albums")
             .addHeader("Authorization", authToken)
             .build()
             .enqueue(

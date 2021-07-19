@@ -1,5 +1,6 @@
 package com.ticketswap.assessment.feature.search.datasource.local
 
+import android.os.Parcelable
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single

@@ -26,12 +26,8 @@ class SpotifyRepository @Inject constructor(
         }
     }
 
-    fun getTrackDetails(id: String, token: String): Single<SpotifyDataModel> {
-        return spotifyService.getTrackDetails(id, token).flatMap {
-            cache.saveCache(it).andThen(
-                cache.getLastCachedRequest()
-            )
-        }
+    fun getArtistAlbums(id: String, token: String): Single<SpotifyDataModel> {
+        return spotifyService.getArtistAlbums(id, token)
     }
 
     companion object {

@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ticketswap.assessment.feature.search.domain.datamodel.SearchItemType
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
-import com.ticketswap.assessment.feature.search.domain.failures.NullQueryFailure
 import com.ticketswap.assessment.feature.search.domain.usecase.LoadArtistDetailsUseCase
-import com.ticketswap.assessment.feature.search.domain.usecase.LoadTrackDetailsUseCase
 import com.ticketswap.extention.Failure
 import com.ticketswap.network.UnauthorizedException
 import com.ticketswap.platform.core.BaseViewModel
@@ -17,8 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val loadArtistDetailsUseCase: LoadArtistDetailsUseCase,
-    private val loadTrackDetailsUseCase: LoadTrackDetailsUseCase
+    private val loadArtistDetailsUseCase: LoadArtistDetailsUseCase
 ) : BaseViewModel() {
 
     private val _detailsLiveDate = MutableLiveData<SpotifyDataModel>()
@@ -26,11 +23,7 @@ class DetailsViewModel @Inject constructor(
 
     fun loadDetails(id: String, type: SearchItemType) {
         Log.d(TAG, "loadDetails: $id")
-        when (type) {
-            SearchItemType.ARTIST -> loadArtistDetailsUseCase.execute(observer = DetailsObserver(), params = id)
-            SearchItemType.TRACK -> loadTrackDetailsUseCase.execute(observer = DetailsObserver(), params = id)
-            else -> handleFailure(NullQueryFailure())
-        }
+        loadArtistDetailsUseCase.execute(observer = DetailsObserver(), params = id)
     }
 
     private inner class DetailsObserver : DisposableSingleObserver<SpotifyDataModel>() {

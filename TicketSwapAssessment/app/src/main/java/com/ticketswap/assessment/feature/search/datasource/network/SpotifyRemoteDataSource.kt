@@ -18,8 +18,8 @@ class SpotifyRemoteDataSource @Inject constructor(private val iSpotifyApi: ISpot
         }
     }
 
-    fun getTrackDetails(id: String, authToken: String): Single<SpotifyDataModel> {
-        return iSpotifyApi.getTrackDetails(id, authToken).map {
+    fun getArtistAlbums(id: String, authToken: String): Single<SpotifyDataModel> {
+        return iSpotifyApi.getArtistAlbums(id, authToken).map {
             it.toDomainModel()
         }
     }

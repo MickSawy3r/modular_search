@@ -1,6 +1,5 @@
 package com.ticketswap.assessment.feature.search.datasource.network
 
-
 import com.squareup.moshi.Json
 
 data class ArtistDetailsResponse(
