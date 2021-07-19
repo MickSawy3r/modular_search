@@ -66,6 +66,7 @@ object Libraries {
         const val rxJava = "3.0.13"
         const val rxAndroid = "3.0.0"
         const val spotifyVersion = "1.2.5"
+        const val swipeRefreshLayout = "1.1.0"
         const val room = "2.3.0"
         const val activityKtx = "1.2.3"
         const val moshi = "1.12.0"
@@ -89,6 +90,7 @@ object Libraries {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
     const val ktxCore = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"

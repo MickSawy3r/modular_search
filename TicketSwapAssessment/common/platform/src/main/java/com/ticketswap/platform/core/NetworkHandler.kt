@@ -1,16 +1,11 @@
-package com.ticketswap.assessment.core.platform
+package com.ticketswap.platform.core
 
 import android.content.Context
 import android.net.NetworkCapabilities
 import android.os.Build
-import com.ticketswap.assessment.core.extension.connectivityManager
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
-import javax.inject.Singleton
+import com.ticketswap.platform.extensions.connectivityManager
 
-@Singleton
-class NetworkHandler
-@Inject constructor(@ApplicationContext private val context: Context) {
+class NetworkHandler constructor(private val context: Context) {
     fun isNetworkAvailable(): Boolean {
         val connectivityManager = context.connectivityManager
 

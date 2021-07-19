@@ -6,9 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.ticketswap.platform.R
 import com.ticketswap.platform.databinding.ActivityLayoutBinding
 import com.ticketswap.platform.extensions.inTransaction
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 abstract class ContainerActivity : AppCompatActivity() {
     lateinit var uiBinding: ActivityLayoutBinding
 

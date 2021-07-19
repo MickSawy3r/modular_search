@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.core.extension
+package com.ticketswap.platform.extensions
 
 import android.content.Context
 import android.net.ConnectivityManager

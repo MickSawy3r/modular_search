@@ -1,5 +1,9 @@
 package com.ticketswap.assessment.feature.search.presentation
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,6 +21,9 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchFragment : BaseFragment() {
+    @Inject
+    lateinit var connectivityBroadcastReceiver: ConnectivityBroadcastReceiver
+
     @Inject
     lateinit var navigator: Navigator
 
@@ -51,6 +58,17 @@ class SearchFragment : BaseFragment() {
         searchViewModel.start()
 
         return uiBinding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.registerReceiver(connectivityBroadcastReceiver, IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"))
+        activity?.registerReceiver(connectivityBroadcastReceiver, IntentFilter("android.net.wifi.WIFI_STATE_CHANGED"))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        activity?.unregisterReceiver(connectivityBroadcastReceiver)
     }
 
     private fun setupUI() {

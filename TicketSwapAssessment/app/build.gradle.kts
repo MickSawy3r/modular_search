@@ -66,6 +66,7 @@ dependencies {
     implementation(Libraries.kotlinStdLib)
     implementation(Libraries.kotlinCoroutines)
     implementation(Libraries.kotlinCoroutinesAndroid)
+    implementation(Libraries.swipeRefreshLayout)
     implementation(Libraries.appCompat)
     implementation(Libraries.ktxCore)
     implementation(Libraries.constraintLayout)
