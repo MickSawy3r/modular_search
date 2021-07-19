@@ -1,5 +1,6 @@
 package com.ticketswap.assessment.feature.search.cache
 
+import com.ticketswap.assessment.feature.search.datasource.local.CacheEntry
 import com.ticketswap.assessment.feature.search.datasource.local.ISearchCache
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single

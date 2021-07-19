@@ -3,7 +3,7 @@ package com.ticketswap.platform.core
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ticketswap.extention.exception.Failure
+import com.ticketswap.extention.Failure
 
 /**
  * Base ViewModel class with default Failure handling.

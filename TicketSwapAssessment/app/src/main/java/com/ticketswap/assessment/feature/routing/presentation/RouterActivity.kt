@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.feature
+package com.ticketswap.assessment.feature.routing.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class RouteActivity : AppCompatActivity() {
-
+class RouterActivity : AppCompatActivity() {
     @Inject
     internal lateinit var navigator: Navigator
 

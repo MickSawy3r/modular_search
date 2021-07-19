@@ -1,6 +1,6 @@
 package com.ticketswap.assessment.feature.search.data
 
-import com.ticketswap.assessment.feature.search.cache.CacheEntry
+import com.ticketswap.assessment.feature.search.datasource.local.CacheEntry
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
 
 fun SpotifyDataModel.toCacheEntry(): CacheEntry {

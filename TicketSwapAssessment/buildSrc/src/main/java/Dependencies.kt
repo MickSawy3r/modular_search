@@ -71,7 +71,10 @@ object Libraries {
         const val activityKtx = "1.2.3"
         const val moshi = "1.12.0"
         const val picasso = "2.71828"
+        const val lottie = "3.7.2"
     }
+
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 
     const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
 
@@ -90,7 +93,8 @@ object Libraries {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
+    const val swipeRefreshLayout =
+        "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
     const val ktxCore = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"

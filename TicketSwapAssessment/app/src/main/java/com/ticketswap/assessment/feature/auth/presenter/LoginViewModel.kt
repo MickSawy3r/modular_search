@@ -6,7 +6,7 @@ import com.spotify.sdk.android.auth.AuthorizationResponse
 import com.ticketswap.assessment.feature.auth.domain.failures.LoginErrorFailure
 import com.ticketswap.assessment.feature.auth.domain.usecase.LoginUserUseCase
 import com.ticketswap.platform.core.BaseViewModel
-import com.ticketswap.extention.exception.Failure
+import com.ticketswap.extention.Failure
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import javax.inject.Inject

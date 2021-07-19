@@ -35,7 +35,9 @@ class DetailsAdapter@Inject constructor() : RecyclerView.Adapter<DetailsAdapter.
         fun bind(
             imageUrl: String
         ) {
-            itemRow.ivImage.loadFromUrl(imageUrl)
+            if (imageUrl.isNotEmpty()) {
+                itemRow.ivImage.loadFromUrl(imageUrl)
+            }
         }
     }
 }

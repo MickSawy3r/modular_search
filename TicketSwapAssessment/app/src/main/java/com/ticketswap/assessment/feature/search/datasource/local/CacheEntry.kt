@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.feature.search.cache
+package com.ticketswap.assessment.feature.search.datasource.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -14,14 +14,15 @@ data class CacheEntry(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "type") val type: SearchItemType,
     @ColumnInfo(name = "itemId") val itemId: String,
-    @ColumnInfo(name = "date") val createdAt: Date = Calendar.getInstance().time
+    @ColumnInfo(name = "date") val createdAt: Date = Calendar.getInstance().time,
+    @ColumnInfo(name = "images") val images: List<String> = listOf()
 )
 
-internal fun CacheEntry.toDomainModel() = SpotifyDataModel(
+fun CacheEntry.toDomainModel() = SpotifyDataModel(
     name = this.name,
     type = this.type,
     id = this.itemId,
-    images = listOf()
+    images = this.images
 )
 
-internal fun List<CacheEntry>.toDomainModel() = this.map { it.toDomainModel() }
+fun List<CacheEntry>.toDomainModel() = this.map { it.toDomainModel() }

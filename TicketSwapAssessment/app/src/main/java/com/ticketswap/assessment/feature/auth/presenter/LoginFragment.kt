@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
@@ -45,7 +44,7 @@ class LoginFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         uiBinding =
-            DataBindingUtil.inflate(layoutInflater, R.layout.fragment_login, container, false)
+            FragmentLoginBinding.inflate(layoutInflater, container, false)
         setupUI()
         setupListeners()
 

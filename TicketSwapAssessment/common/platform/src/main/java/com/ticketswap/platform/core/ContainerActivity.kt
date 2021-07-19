@@ -12,8 +12,7 @@ abstract class ContainerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         uiBinding = ActivityLayoutBinding.inflate(layoutInflater)
-
-        setSupportActionBar(uiBinding.toolbar)
+        setContentView(uiBinding.root)
         addFragment(savedInstanceState)
     }
 

@@ -1,16 +1,18 @@
 package com.ticketswap.assessment.feature.search.presentation
 
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.ticketswap.assessment.R
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.FragmentSearchBinding
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
-import com.ticketswap.assessment.feature.search.domain.failures.SessionExpiredFailure
-import com.ticketswap.extention.exception.Failure
+import com.ticketswap.extention.Failure
 import com.ticketswap.extention.failure
 import com.ticketswap.extention.loading
 import com.ticketswap.extention.observe
@@ -18,7 +20,6 @@ import com.ticketswap.platform.core.BaseFragment
 import com.ticketswap.platform.core.ConnectivityBroadcastReceiver
 import com.ticketswap.platform.core.ConnectivityCallback
 import com.ticketswap.platform.extensions.attachConnectivityBroadcastReceiver
-import com.ticketswap.platform.extensions.close
 import com.ticketswap.platform.extensions.deAttachConnectivityBroadcastReceiver
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -61,7 +62,6 @@ class SearchFragment : BaseFragment(), ConnectivityCallback {
         )
 
         setupUI()
-        setupListeners()
 
         searchViewModel.start()
 
@@ -85,63 +85,67 @@ class SearchFragment : BaseFragment(), ConnectivityCallback {
             navigator.showSearchItemDetails(requireActivity(), item, navigationExtras)
         }
 
-        uiBinding.buttonSearch.setOnClickListener {
+        uiBinding.searchEditText.setOnEditorActionListener { _, _, _ ->
             searchViewModel.search(uiBinding.searchEditText.text.toString())
+            true
+        }
+    }
+
+    override fun onConnectionChange(connected: Boolean) {
+        if (!connected) {
+            uiBinding.llNoInternet.visibility = View.VISIBLE
+            searchViewModel.setNetworkAvailable(false)
+        } else {
+            uiBinding.llNoInternet.visibility = View.GONE
+            searchViewModel.setNetworkAvailable(true)
         }
     }
 
     private fun handleLoading(loading: Boolean?) {
-        TODO("Handle Loading")
+        Log.d(TAG, "handleLoading: $loading")
+        if (loading == true) {
+            showProgress()
+        } else {
+            hideProgress()
+        }
     }
 
     private fun renderSearchResult(data: List<SpotifyDataModel>?) {
         searchAdapter.collection = data.orEmpty()
-    }
 
-    private fun setupListeners() {
-        searchViewModel.search.observe(viewLifecycleOwner, {
-            searchAdapter.collection = it.orEmpty()
-        })
-
-        searchViewModel.loading.observe(viewLifecycleOwner, {
-            if (it) {
-                showProgress()
-            } else {
-                hideProgress()
-            }
-        })
-
-        searchViewModel.failure.observe(viewLifecycleOwner, {
-            if (it is SessionExpiredFailure) {
-                navigator.showLogin(requireContext())
-            } else {
-                notify(it.message ?: "Unknown Error")
-            }
-        })
+        val result = data.orEmpty()
+        Log.d(TAG, "renderSearchResult: ${result.size}")
+        if (result.isEmpty()) {
+            uiBinding.llEmptyList.visibility = View.VISIBLE
+            uiBinding.recycler.visibility = View.GONE
+        } else {
+            uiBinding.llEmptyList.visibility = View.GONE
+            uiBinding.recycler.visibility = View.VISIBLE
+        }
     }
 
     companion object {
         private const val TAG = "SearchFragment"
     }
 
-    override fun onConnected() {
-        searchViewModel.setNetworkAvailable(true)
-    }
-
-    override fun onDisconnected() {
-        searchViewModel.setNetworkAvailable(false)
-    }
-
     private fun handleFailure(failure: Failure?) {
         when (failure) {
             is Failure.NetworkConnection -> {
-                notifyWithStringRes(R.string.failure_network_connection); close()
+                notifyWithAction(R.string.failure_network_connection, R.string.retry) {
+                    searchViewModel.retry()
+                }
+            }
+            is EmptySearchQueryFailure -> {
+                notify(R.string.null_search_query)
+            }
+            is Failure.UnauthorizedError -> {
+                navigator.showLogin(requireContext())
             }
             is Failure.ServerError -> {
-                notifyWithStringRes(R.string.failure_server_error); close()
+                notify(R.string.failure_server_error)
             }
             else -> {
-                notifyWithStringRes(R.string.failure_server_error); close()
+                notify(R.string.failure_server_error)
             }
         }
     }

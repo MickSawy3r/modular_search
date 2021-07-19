@@ -84,6 +84,7 @@ dependencies {
     implementation(Libraries.okHttpLoggingInterceptor)
     implementation(Libraries.rxAndroid)
     implementation(Libraries.rxJava)
+    implementation(Libraries.lottie)
 
     // Ktx
     implementation(Libraries.fragmentKtx)

@@ -13,9 +13,9 @@ class AuthGuard constructor(context: Context) {
         val addedTime = prefStore.getLoggedInAt()
         val currentTime = CalendarHelper.nowInSeconds()
 
-        Log.d(TAG, "userLoggedIn: Remaining ${currentTime - addedTime} Seconds")
+        Log.d(TAG, "userLoggedIn: Remaining ${currentTime - addedTime + expiresIn} Seconds")
 
-        return currentTime - addedTime < expiresIn &&
+        return currentTime - addedTime + expiresIn > 0 &&
                 token != "" &&
                 expiresIn > -1 &&
                 addedTime > -1

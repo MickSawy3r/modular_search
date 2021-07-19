@@ -7,4 +7,8 @@
     <string name="failure_server_error">Server Error</string>
     <string name="failure_movies_list_unavailable">Movies Unavailable.</string>
     <string name="failure_movie_non_existent">Movie Not Existent.</string>
+    <string name="not_connected_to_the_internet">Not connected to the internet!</string>
+    <string name="retry">Retry</string>
+    <string name="null_search_query">Null Search Query</string>
+    <string name="search">Search</string>
 </resources>

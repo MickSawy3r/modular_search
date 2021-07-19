@@ -25,9 +25,9 @@ fun ImageView.loadFromUrl(url: String) =
         .error(R.drawable.ic_image_load_error)
         .into(this)
 
-fun ImageView.loadUrlAndPostponeEnterTransition(url: String, activity: FragmentActivity) {
+fun ImageView.loadCircularFromUrl(url: String) =
     Picasso.get()
         .load(url)
+        .transform(CircleTransform())
         .error(R.drawable.ic_image_load_error)
         .into(this)
-}

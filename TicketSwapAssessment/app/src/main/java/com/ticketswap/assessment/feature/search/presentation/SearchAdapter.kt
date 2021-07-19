@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.ItemSearchBinding
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
+import com.ticketswap.extention.loadCircularFromUrl
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -19,8 +20,8 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.S
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): SearchVH {
         val layoutInflater = LayoutInflater.from(p0.context)
-        val venueItemBinding = ItemSearchBinding.inflate(layoutInflater, p0, false)
-        return SearchVH(venueItemBinding)
+        val searchItem = ItemSearchBinding.inflate(layoutInflater, p0, false)
+        return SearchVH(searchItem)
     }
 
     override fun onBindViewHolder(viewHolder: SearchVH, position: Int) {
@@ -36,6 +37,11 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.S
             clickListener: (SpotifyDataModel, Navigator.Extras) -> Unit
         ) {
             itemRow.name.text = searchItem.name
+            if (searchItem.images.isNotEmpty()) {
+                if (searchItem.images[0].isNotEmpty()) {
+                    itemRow.ivImage.loadCircularFromUrl(searchItem.images[0])
+                }
+            }
             itemView.setOnClickListener {
                 clickListener(
                     searchItem,

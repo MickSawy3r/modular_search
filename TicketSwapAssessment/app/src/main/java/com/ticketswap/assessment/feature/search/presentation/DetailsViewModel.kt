@@ -8,7 +8,7 @@ import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataMode
 import com.ticketswap.assessment.feature.search.domain.failures.NullQueryFailure
 import com.ticketswap.assessment.feature.search.domain.usecase.LoadArtistDetailsUseCase
 import com.ticketswap.assessment.feature.search.domain.usecase.LoadTrackDetailsUseCase
-import com.ticketswap.extention.exception.Failure
+import com.ticketswap.extention.Failure
 import com.ticketswap.network.UnauthorizedException
 import com.ticketswap.platform.core.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +22,7 @@ class DetailsViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _detailsLiveDate = MutableLiveData<SpotifyDataModel>()
-    val detailsLiveData: LiveData<SpotifyDataModel> = _detailsLiveDate
+    val details: LiveData<SpotifyDataModel> = _detailsLiveDate
 
     fun loadDetails(id: String, type: SearchItemType) {
         Log.d(TAG, "loadDetails: $id")

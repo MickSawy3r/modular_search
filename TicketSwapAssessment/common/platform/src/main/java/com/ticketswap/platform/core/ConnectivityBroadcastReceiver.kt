@@ -12,9 +12,9 @@ class ConnectivityBroadcastReceiver constructor(private val connectivityCallback
             return
         }
         if (NetworkHandler(context).isNetworkAvailable()) {
-            connectivityCallback.onConnected()
+            connectivityCallback.onConnectionChange(true)
         } else {
-            connectivityCallback.onDisconnected()
+            connectivityCallback.onConnectionChange(false)
         }
     }
 
