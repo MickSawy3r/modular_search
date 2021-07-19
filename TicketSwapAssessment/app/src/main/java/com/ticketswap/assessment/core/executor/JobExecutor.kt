@@ -7,8 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class JobExecutor @Inject
-constructor() : ThreadExecutor {
+class JobExecutor @Inject constructor() : ThreadExecutor {
     companion object {
         private const val THREAD_POOL = 3
     }

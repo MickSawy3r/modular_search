@@ -2,7 +2,6 @@ package com.ticketswap.platform.core
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.ticketswap.platform.R
 import com.ticketswap.platform.databinding.ActivityLayoutBinding
 import com.ticketswap.platform.extensions.inTransaction
@@ -12,7 +11,8 @@ abstract class ContainerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        uiBinding = DataBindingUtil.setContentView(this, R.layout.activity_layout)
+        uiBinding = ActivityLayoutBinding.inflate(layoutInflater)
+
         setSupportActionBar(uiBinding.toolbar)
         addFragment(savedInstanceState)
     }

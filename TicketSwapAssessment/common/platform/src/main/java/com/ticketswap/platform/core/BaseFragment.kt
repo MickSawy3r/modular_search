@@ -2,6 +2,7 @@ package com.ticketswap.platform.core
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.ticketswap.platform.extensions.viewContainer
@@ -19,5 +20,8 @@ abstract class BaseFragment : Fragment() {
         with(activity) { if (this is ContainerActivity) this.uiBinding.progress.visibility = viewStatus }
 
     fun notify(message: String) =
+        Snackbar.make(viewContainer, message, Snackbar.LENGTH_SHORT).show()
+
+    fun notifyWithStringRes(@StringRes message: Int) =
         Snackbar.make(viewContainer, message, Snackbar.LENGTH_SHORT).show()
 }

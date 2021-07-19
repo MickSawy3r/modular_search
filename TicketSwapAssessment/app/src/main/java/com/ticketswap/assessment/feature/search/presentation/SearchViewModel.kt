@@ -21,7 +21,10 @@ class SearchViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _searchLiveData: MutableLiveData<List<SpotifyDataModel>> = MutableLiveData()
-    val searchLiveData: LiveData<List<SpotifyDataModel>> = _searchLiveData
+    val search: LiveData<List<SpotifyDataModel>> = _searchLiveData
+
+    private val _connectivityLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+    val connectivityLiveData: LiveData<Boolean> = _connectivityLiveData
 
     fun start() {
         setLoading(true)
@@ -36,6 +39,10 @@ class SearchViewModel @Inject constructor(
             observer = SearchObserver(),
             params = query
         )
+    }
+
+    fun setNetworkAvailable(isConnected: Boolean) {
+        _connectivityLiveData.postValue(isConnected)
     }
 
     private inner class SearchObserver : DisposableSingleObserver<List<SpotifyDataModel>>() {

@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.ticketswap.assessment.R
 import com.ticketswap.assessment.core.navigation.Navigator
 import com.ticketswap.assessment.databinding.FragmentDetailsBinding
 import com.ticketswap.assessment.feature.search.domain.datamodel.SpotifyDataModel
@@ -52,9 +50,8 @@ class DetailsFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        uiBinding = DataBindingUtil.inflate(
+        uiBinding = FragmentDetailsBinding.inflate(
             layoutInflater,
-            R.layout.fragment_details,
             container,
             false
         )

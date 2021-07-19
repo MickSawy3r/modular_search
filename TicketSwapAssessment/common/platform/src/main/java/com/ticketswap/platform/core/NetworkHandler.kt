@@ -18,6 +18,7 @@ class NetworkHandler constructor(private val context: Context) {
                 activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
                 activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
                 activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_VPN) -> true
                 activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
                 else -> false
             }
