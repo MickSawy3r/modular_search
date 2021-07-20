@@ -33,8 +33,4 @@ class SpotifyRepository @Inject constructor(
                 cache.saveCache(it).andThen(Single.just(it))
             }
     }
-
-    companion object {
-        private const val TAG = "SpotifyRepository"
-    }
 }

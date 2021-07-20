@@ -1,4 +1,4 @@
-package com.ticketswap.assessment.util
+package com.ticketswap.assessment.util.factories
 
 import com.ticketswap.assessment.feature.search.datasource.network.ArtistDetailsResponse
 import com.ticketswap.assessment.feature.search.datasource.network.SearchResponse

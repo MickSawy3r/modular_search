@@ -135,6 +135,7 @@ object TestLibraries {
         const val junit5 = "5.7.1"
         const val robolectric = "4.4"
         const val mockito = "3.9.0"
+        const val mockitoKotlin = "3.2.0"
         const val kluent = "1.68"
         const val testRunner = "1.1.0"
         const val espressoCore = "3.2.0"
@@ -144,8 +145,11 @@ object TestLibraries {
         const val coroutinesTest = "1.5.0"
         const val hiltTesting = BuildPlugins.Versions.hilt
         const val okHttp = "4.9.0"
+        const val coreTesting = "2.1.0"
+        const val fragmentTesting = "1.3.5"
     }
 
+    const val coreTesting = "androidx.arch.core:core-testing:${Versions.coreTesting}"
     const val coroutinesTest =
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTest}"
     const val junit4 = "junit:junit:${Versions.junit4}"
@@ -163,7 +167,17 @@ object TestLibraries {
     const val mockitoJUnitJupyter = "org.mockito:mockito-junit-jupiter:${Versions.mockito}"
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockito}"
     const val mockitoCore = "org.mockito:mockito-core:${Versions.mockito}"
+    const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}"
     const val okHttpMockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okHttp}"
+    const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
+}
+
+object RuntimeLibraries {
+    private object Versions {
+        const val kotlinReflect = "1.5.21"
+    }
+
+    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlinReflect}"
 }
 
 object TestRuntimeLibraries {

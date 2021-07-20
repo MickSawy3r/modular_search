@@ -96,10 +96,14 @@ dependencies {
     // Unit/Android tests dependencies
     testImplementation(TestLibraries.junit4)
     testImplementation(TestLibraries.kluent)
+    testImplementation(TestLibraries.okHttpMockWebServer)
     testImplementation(TestLibraries.mockitoCore)
     testImplementation(TestLibraries.mockitoInline)
+    testImplementation(TestLibraries.mockitoKotlin)
     testImplementation(TestLibraries.mockitoJUnitJupyter)
     testImplementation(TestLibraries.robolectric)
+    testImplementation(TestLibraries.coreTesting)
+    debugImplementation(TestLibraries.fragmentTesting)
 
     // Test Runtime
     testRuntimeOnly(TestRuntimeLibraries.jUnitJupyter)

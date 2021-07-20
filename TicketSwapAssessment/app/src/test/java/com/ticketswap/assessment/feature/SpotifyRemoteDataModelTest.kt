@@ -1,7 +1,9 @@
-package com.ticketswap.assessment.feature.search.datasource.network
+package com.ticketswap.assessment.feature
 
+import com.ticketswap.assessment.feature.search.datasource.network.ISpotifyApi
+import com.ticketswap.assessment.feature.search.datasource.network.SpotifyRemoteDataSource
 import com.ticketswap.assessment.feature.search.domain.datamodel.SearchItemType
-import com.ticketswap.assessment.util.ResponseFactory
+import com.ticketswap.assessment.util.factories.ResponseFactory
 import com.ticketswap.extention.Failure
 import io.reactivex.rxjava3.core.Single
 import org.junit.Test

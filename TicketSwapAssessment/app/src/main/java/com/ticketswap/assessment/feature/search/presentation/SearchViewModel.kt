@@ -33,7 +33,7 @@ class SearchViewModel @Inject constructor(
         )
     }
 
-    fun search(query: String) {
+    fun searchFor(query: String) {
         if (query.isEmpty()) {
             handleFailure(EmptySearchQueryFailure())
             return
@@ -57,7 +57,7 @@ class SearchViewModel @Inject constructor(
         this.isConnected = isConnected
         if (hasQue) {
             hasQue = false
-            lastSearchQuery?.let { search(it) }
+            lastSearchQuery?.let { searchFor(it) }
         }
     }
 

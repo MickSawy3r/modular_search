@@ -8,4 +8,6 @@ dependencies {
 
     testImplementation(TestLibraries.okHttpMockWebServer)
     testImplementation(TestLibraries.junit4)
+
+    runtimeOnly(RuntimeLibraries.kotlinReflect)
 }

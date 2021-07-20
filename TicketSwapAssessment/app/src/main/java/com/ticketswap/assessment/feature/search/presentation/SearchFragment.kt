@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModelProvider
 import com.ticketswap.assessment.R
 import com.ticketswap.assessment.core.navigation.Navigator
@@ -24,6 +25,11 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchFragment : BaseFragment(), ConnectivityCallback {
+
+    companion object {
+        private const val TAG = "SearchFragment"
+    }
+
     @Inject
     lateinit var navigator: Navigator
 
@@ -31,7 +37,6 @@ class SearchFragment : BaseFragment(), ConnectivityCallback {
     lateinit var searchAdapter: SearchAdapter
 
     private lateinit var searchViewModel: SearchViewModel
-
     private lateinit var uiBinding: FragmentSearchBinding
     private lateinit var connectivityBroadcastReceiver: ConnectivityBroadcastReceiver
 
@@ -80,12 +85,12 @@ class SearchFragment : BaseFragment(), ConnectivityCallback {
     private fun setupUI() {
         uiBinding.recycler.adapter = searchAdapter
 
-        searchAdapter.clickListener = { item, navigationExtras ->
+        searchAdapter.clickListener = { item, _ ->
             navigator.showSearchItemDetails(requireActivity(), item)
         }
 
         uiBinding.searchEditText.setOnEditorActionListener { _, _, _ ->
-            searchViewModel.search(uiBinding.searchEditText.text.toString())
+            searchViewModel.searchFor(uiBinding.searchEditText.text.toString())
             true
         }
     }
@@ -124,10 +129,6 @@ class SearchFragment : BaseFragment(), ConnectivityCallback {
         }
     }
 
-    companion object {
-        private const val TAG = "SearchFragment"
-    }
-
     private fun handleFailure(failure: Failure?) {
         when (failure) {
             is Failure.NetworkConnection -> {
@@ -147,5 +148,10 @@ class SearchFragment : BaseFragment(), ConnectivityCallback {
                 notify(R.string.failure_server_error)
             }
         }
+    }
+
+    @VisibleForTesting
+    fun injectViewModel(testViewModel: SearchViewModel) {
+        searchViewModel = testViewModel
     }
 }

@@ -1,7 +1,9 @@
 package com.ticketswap.assessment.feature.search.network
 
-import com.ticketswap.assessment.BuildConfig
-import com.ticketswap.assessment.feature.search.datasource.network.*
+import com.ticketswap.assessment.feature.search.datasource.network.ArtistDetailsResponse
+import com.ticketswap.assessment.feature.search.datasource.network.ISpotifyApi
+import com.ticketswap.assessment.feature.search.datasource.network.SearchResponse
+import com.ticketswap.assessment.feature.search.datasource.network.TrackDetailsResponse
 import com.ticketswap.network.NetworkClient
 import com.ticketswap.network.createObjectAdapter
 import io.reactivex.rxjava3.core.Single
