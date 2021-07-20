@@ -4,21 +4,20 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.ticketswap.network.util.WeatherResponse
-import okhttp3.Request
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
-class TestNetwork {
+class TestNetworkClient {
     private lateinit var webServer: MockWebServer
 
     @Before
     fun setUp() {
         // Mocking the server
         webServer = MockWebServer()
-        webServer.start()
+        webServer.start(8800)
     }
 
     @After
@@ -28,19 +27,12 @@ class TestNetwork {
 
     @Test
     fun testEnqueueSuccess() {
-        val moshi = Moshi.Builder()
-            .addLast(KotlinJsonAdapterFactory())
-            .build()
-        val request = Request.Builder()
-            .url("https://5eee5c0999b2440016bc060d.mockapi.io/weather")
-            .get()
-            .build()
+        val request = NetworkClient("https://5eee5c0999b2440016bc060d.mockapi.io/")
 
-        val listMyData = Types.newParameterizedType(List::class.java, WeatherResponse::class.java)
-        val adapter = moshi.adapter<List<WeatherResponse>>(listMyData)
-
-        request.enqueue<List<WeatherResponse>>(responseAdapter = adapter).test()
-            .assertValue { it.size == 4 }
+        request.enqueue<List<WeatherResponse>>(
+            responseAdapter = createObjectAdapter(),
+            url = "weather"
+        ).test().assertValue { it.size == 4 }
     }
 
     @Test
@@ -48,15 +40,15 @@ class TestNetwork {
         val moshi = Moshi.Builder()
             .addLast(KotlinJsonAdapterFactory())
             .build()
-        val request = Request.Builder()
-            .url("https://5eee5c0999b2440016bc060d.mockapi.io")
-            .get()
-            .build()
 
         val listMyData = Types.newParameterizedType(List::class.java, WeatherResponse::class.java)
         val adapter = moshi.adapter<List<WeatherResponse>>(listMyData)
 
-        request.enqueue<List<WeatherResponse>>(responseAdapter = adapter).test()
+        val client = NetworkClient("https://5eee5c0999b2440016bc060d.mockapi.io/")
+        client.enqueue(url = "", responseAdapter = adapter)
+            .test()
+
+        client.enqueue<List<WeatherResponse>>(responseAdapter = adapter, url = "").test()
             .assertError {
                 println(it.message)
                 println(it)
@@ -66,27 +58,19 @@ class TestNetwork {
 
     @Test
     fun testUnauthorizedFail() {
-        val serverUrl = "http://localhost/"
+        val serverUrl = "http://localhost:8800/"
         val response = MockResponse()
             .setBody("{\"code\":403}")
             .setResponseCode(403)
 
-        webServer.url(serverUrl)
-
         webServer.enqueue(response)
-        val moshi = Moshi.Builder()
-            .addLast(KotlinJsonAdapterFactory())
-            .build()
 
-        val request = Request.Builder()
-            .url(webServer.url("/"))
-            .get()
-            .build()
+        val client = NetworkClient(serverUrl)
 
-        val adapter = moshi.adapter(WeatherResponse::class.java)
-
-        request.enqueue(responseAdapter = adapter)
-            .test()
+        client.enqueue(
+            url = "",
+            responseAdapter = createObjectAdapter<Any>()
+        ).test()
             .assertError {
                 it is UnsuccessfulRequest
             }

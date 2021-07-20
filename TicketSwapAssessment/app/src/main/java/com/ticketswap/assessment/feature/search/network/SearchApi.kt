@@ -2,46 +2,43 @@ package com.ticketswap.assessment.feature.search.network
 
 import com.ticketswap.assessment.BuildConfig
 import com.ticketswap.assessment.feature.search.datasource.network.*
-import com.ticketswap.assessment.feature.search.domain.datamodel.TrackDetailsDataModel
+import com.ticketswap.network.NetworkClient
 import com.ticketswap.network.createObjectAdapter
-import com.ticketswap.network.enqueue
 import io.reactivex.rxjava3.core.Single
-import okhttp3.HttpUrl.Companion.toHttpUrl
-import okhttp3.Request
+import javax.inject.Inject
 
-class SearchApi : ISpotifyApi {
+class SearchApi @Inject constructor(private val networkClient: NetworkClient) : ISpotifyApi {
     override fun searchSpotify(query: String, authToken: String): Single<SearchResponse> {
-        val spotifyUrl = ("${BuildConfig.SPOTIFY_BASE_URL}search?q=$query&type=track,artist").toHttpUrl()
-
-        return Request.Builder()
-            .url(spotifyUrl)
-            .addHeader("Authorization", authToken)
-            .build()
-            .enqueue(
-                responseAdapter = createObjectAdapter(),
-                debug = false
+        return networkClient.enqueue(
+            responseAdapter = createObjectAdapter(),
+            url = "search",
+            queryParams = mapOf(
+                "q" to query,
+                "type" to "track,artist"
+            ),
+            headers = mapOf(
+                "Authorization" to authToken
             )
+        )
     }
 
     override fun getArtistDetails(id: String, authToken: String): Single<ArtistDetailsResponse> {
-        return Request.Builder()
-            .url("${BuildConfig.SPOTIFY_BASE_URL}artists/$id")
-            .addHeader("Authorization", authToken)
-            .build()
-            .enqueue(
-                responseAdapter = createObjectAdapter(),
-                debug = false
+        return networkClient.enqueue(
+            responseAdapter = createObjectAdapter(),
+            url = "artists/$id",
+            headers = mapOf(
+                "Authorization" to authToken
             )
+        )
     }
 
     override fun getTrackDetails(id: String, authToken: String): Single<TrackDetailsResponse> {
-        return Request.Builder()
-            .url("${BuildConfig.SPOTIFY_BASE_URL}tracks/$id")
-            .addHeader("Authorization", authToken)
-            .build()
-            .enqueue(
-                responseAdapter = createObjectAdapter(),
-                debug = false
-            )
+        return networkClient.enqueue(
+            responseAdapter = createObjectAdapter(),
+            url = "tracks/$id",
+            headers = mapOf(
+                "Authorization" to authToken
+            ),
+        )
     }
 }
