@@ -30,8 +30,7 @@ class Navigator @Inject constructor(
 
     fun showSearchItemDetails(
         activity: FragmentActivity,
-        searchItem: SpotifyDataModel,
-        navigationExtras: Extras
+        searchItem: SpotifyDataModel
     ) {
         val intent = DetailsActivity.callingIntent(activity, searchItem)
         activity.startActivity(intent)

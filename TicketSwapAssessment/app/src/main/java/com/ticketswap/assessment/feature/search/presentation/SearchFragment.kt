@@ -81,7 +81,7 @@ class SearchFragment : BaseFragment(), ConnectivityCallback {
         uiBinding.recycler.adapter = searchAdapter
 
         searchAdapter.clickListener = { item, navigationExtras ->
-            navigator.showSearchItemDetails(requireActivity(), item, navigationExtras)
+            navigator.showSearchItemDetails(requireActivity(), item)
         }
 
         uiBinding.searchEditText.setOnEditorActionListener { _, _, _ ->

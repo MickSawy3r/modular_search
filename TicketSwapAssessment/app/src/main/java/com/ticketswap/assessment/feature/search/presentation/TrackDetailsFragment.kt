@@ -65,7 +65,7 @@ class TrackDetailsFragment : BaseFragment() {
 
     private fun setupUI() {
         detailsItem = arguments?.get(PARAM_SEARCH_ITEM) as SpotifyDataModel
-        trackDetailsViewMode.loadDetails(detailsItem.id, detailsItem.type)
+        trackDetailsViewMode.loadDetails(detailsItem.id)
     }
 
     private fun setupListeners() {
@@ -100,7 +100,7 @@ class TrackDetailsFragment : BaseFragment() {
         when (failure) {
             is Failure.NetworkConnection -> {
                 notifyWithAction(R.string.failure_network_connection, R.string.retry) {
-                    trackDetailsViewMode.loadDetails(detailsItem.id, detailsItem.type)
+                    trackDetailsViewMode.loadDetails(detailsItem.id)
                 }
             }
             is EmptySearchQueryFailure -> {

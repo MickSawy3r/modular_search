@@ -25,6 +25,20 @@ object Default {
 }
 
 android {
+    val releaseKeyStoreFile: String by project
+    val releaseStorePassword: String by project
+    val releaseAlias: String by project
+    val releaseKeyPassword: String by project
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(releaseKeyStoreFile)
+            storePassword = releaseStorePassword
+            keyAlias = releaseAlias
+            keyPassword = releaseKeyPassword
+        }
+    }
+
     buildTypes {
         getByName(BuildTypes.DEBUG) {
             isMinifyEnabled = false
@@ -33,7 +47,11 @@ android {
         }
         getByName(BuildTypes.RELEASE) {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 

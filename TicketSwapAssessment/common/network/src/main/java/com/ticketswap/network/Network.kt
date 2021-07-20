@@ -6,11 +6,16 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
+import java.net.HttpURLConnection
 
 /**
- * An extension for the Request object to perform a network call
- * I'm not against creating classes, I just like this way more at the moment :-)
- * @throws UnsuccessfulRequest
+ * An extension for the Request object to perform a network call.
+ * @throws UnsuccessfulRequest Response Code: 200 > response code > 300
+ * @throws UnauthorizedException Response Code: 401, 403
+ * @throws BadRequestException Response Code: 500 > response code >= 400
+ * @throws ServerException Response Code: >= 500
+ *
+ * @return Single<T>
  */
 fun <T> Request.enqueue(
     interceptors: List<Interceptor> = listOf(),
@@ -23,13 +28,17 @@ fun <T> Request.enqueue(
         okHttp.newCall(request = this).execute()
     }.map {
         if (!it.isSuccessful) {
-            if (it.code == 403 || it.code == 401) {
+            if (it.code == HttpURLConnection.HTTP_UNAUTHORIZED ||
+                it.code == HttpURLConnection.HTTP_FORBIDDEN
+            ) {
                 throw UnauthorizedException(it.request.url.toString())
             }
-            if (it.code == 400) {
+            if (it.code in
+                HttpURLConnection.HTTP_MULT_CHOICE until HttpURLConnection.HTTP_INTERNAL_ERROR
+            ) {
                 throw BadRequestException(it.request.url.toString(), it.request.body.toString())
             }
-            if (it.code >= 500) {
+            if (it.code >= HttpURLConnection.HTTP_INTERNAL_ERROR) {
                 throw ServerException(it.request.url.toString())
             }
             throw UnsuccessfulRequest(it.request.url.toString(), it.body?.string())

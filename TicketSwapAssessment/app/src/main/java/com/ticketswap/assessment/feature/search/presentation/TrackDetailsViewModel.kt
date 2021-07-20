@@ -3,7 +3,6 @@ package com.ticketswap.assessment.feature.search.presentation
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ticketswap.assessment.feature.search.domain.datamodel.SearchItemType
 import com.ticketswap.assessment.feature.search.domain.datamodel.TrackDetailsDataModel
 import com.ticketswap.assessment.feature.search.domain.usecase.LoadTrackDetailsUseCase
 import com.ticketswap.extention.Failure
@@ -21,7 +20,7 @@ class TrackDetailsViewModel @Inject constructor(
     private val _detailsLiveDate = MutableLiveData<TrackDetailsDataModel>()
     val details: LiveData<TrackDetailsDataModel> = _detailsLiveDate
 
-    fun loadDetails(id: String, type: SearchItemType) {
+    fun loadDetails(id: String) {
         Log.d(TAG, "loadDetails: $id")
         setLoading(true)
         loadTrackDetailsUseCase.execute(observer = DetailsObserver(), params = id)

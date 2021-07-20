@@ -11,7 +11,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
-
 class TestNetwork {
     private lateinit var webServer: MockWebServer
 
